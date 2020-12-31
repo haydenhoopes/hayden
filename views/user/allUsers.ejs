@@ -1,0 +1,26 @@
+<div class="container">
+    <h1 style="text-align: center;">All Users</h1>
+
+    <div class="alert alert-info">You are seeing this page because you are an administrator.</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Is Admin?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% allUsers.map(user => { %>
+                <tr>
+                    <td><a href="/users/<%= user._id %>"><%= user.name.firstName %> <%= user.name.lastName %></a></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.isAdmin %></td>
+                </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="container">
+    <a class="navbar-brand" href="/">Hayden Hoopes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mana">Mana Beads</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/projects">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <% if (currentUser) { %>
+          <% if (currentUser.isAdmin) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/mangoes">Mangoes</a>
+            </li>
+          <% } %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><%= currentUser.username %></a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/users/<%= currentUser._id %>">Profile</a>
+              <a class="dropdown-item" href="#">My Purchases</a>
+              <% if (currentUser.isAdmin) { %><a class="dropdown-item" href="/users/all">Manage Users</a><% } %>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/users/logout">Logout</a>
+            </div>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/login">Login</a>
+          </li> 
+        <% } %> 
+      </ul>
+    </div>  
+  </div>
+  </nav><br>
