@@ -1,0 +1,53 @@
+    <%- include('../partials/_mangoNav') %>
+
+ 
+
+      <div class="" style="max-width: 1500px;margin:auto">
+        <div class="alert">Mangoes have been cultivated in South Asia for thousands of years and reached Southeast Asia between the fifth and fourth centuries BCE. By the 10th century CE, cultivation had begun in East Africa.[8] The 14th-century Moroccan traveler Ibn Battuta reported it at Mogadishu.[9] Cultivation came later to...</div>
+    <table class="table small">
+        <thead>
+            <tr>
+                <th class="d-none d-sm-none d-md-table-cell">ID</th>
+                <th>Date</th>
+                <th>Source</th>
+                <th style="display:">Category</th>
+                <th class="d-none d-sm-none d-md-table-cell">Type</th>
+                <th class="d-none d-sm-none d-md-table-cell">Description</th>
+                <th class="d-none d-sm-none d-md-table-cell">Payment Method</th>
+                <th class="d-none d-sm-none d-md-table-cell">Is Normal?</th>
+                <th class="d-none d-sm-none d-md-table-cell">Who?</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="d-none d-sm-none d-md-table-cell">12/04/2020</td>
+                <td>Walmart</td>
+                <td>Food</td>
+                <td>$ 96.64</td>
+                <td class="d-none d-sm-none d-md-table-cell">12/04/2020</td>
+                <td class="d-none d-sm-none d-md-table-cell">Walmart</td>
+                <td class="d-none d-sm-none d-md-table-cell">Food</td>
+                <td class="d-none d-sm-none d-md-table-cell">$ 96.64</td>
+                <td>$ 96.64</td>
+                <td class="d-none d-sm-none d-md-table-cell">$ 96.64</td>
+            </tr>
+            <% let count = 1; %>
+            <% mangoes.map(mango => { %>
+                <a href="/mangoes/<%= mango._id %>"><tr>
+                    <td class="d-none d-sm-none d-md-table-cell"><%= mango._id %>-<%= count %></td>
+                    <td><%= mango.date %></td>
+                    <td><%= mango.source %></td>
+                    <td><%= mango.category %></td>
+                    <td class="d-none d-sm-none d-md-table-cell"><%= mango.type %></td>
+                    <td class="d-none d-sm-none d-md-table-cell"><%= mango.description %></td>
+                    <td class="d-none d-sm-none d-md-table-cell"><%= mango.paymentMethod %></td>
+                    <td class="d-none d-sm-none d-md-table-cell"><%= mango.isNormal %></td>
+                    <td class="d-none d-sm-none d-md-table-cell"><%= mango.who %></td>
+                    <td>$ <%= mango.amount %></td>
+                </tr></a>
+                <% count++; %>
+            <% }) %> 
+        </tbody>
+    </table>
+</div>

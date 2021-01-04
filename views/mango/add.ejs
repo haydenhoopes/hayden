@@ -1,0 +1,56 @@
+<%- include('../partials/_mangoNav') %>
+<div class="container">
+    <div class="data-form">
+      <form action="/mangoes/add" method="POST">
+        <div class="jumbotron bg-warning text-white m-3">
+            <h1>Add Mango</h1>
+        </div>
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" class="form-control" required autofocus />
+        <label for="source">Source</label>
+        <input type="text" id="source" name="source" class="form-control" required />
+        
+        <% let categories = ['Rent', 'Car', 'Health Insurance', 'Medical', 'House/Bath', 'Personal Care', 'School', 'Util - Water', 'Util - Gas', 'Util - Phone', 'Util - Internet', 'Util - Electricity', 'Food', 'Clothes', 'Recreation/Entertainment', 'Travel', 'Gifts', 'Tithing', 'Mail', 'Other'] %>
+        <label for="category">Category</label>
+        <select id="category" name="category" class="form-control" required>
+            <option>Select a type</option>
+            <% for (category of categories) { %>
+                <option><%= category %></option>
+            <% } %>
+        </select>
+
+        <% let types = ['Expense', 'Income'] %>
+        <label for="type">Type</label>
+        <select id="type" name="type" class="form-control" required>
+            <option>Select a type</option>
+            <% for (type of types) { %>
+                <option><%= type %></option>
+            <% } %>
+        </select>
+              
+              <label for="description">Description</label>
+              <input type="text" id="description" name="description" class="form-control" />
+              <label for="paymentMethod">Payment Method</label>
+
+              <% let methods = ['Cash', 'Credit Card', 'Checking Account', 'Savings Account', 'Gift Card', "Rewards Points"] %>
+        <select id="paymentMethod" name="paymentMethod" class="form-control" required >
+            <option>Select a payment method</option>
+            <% for (method of methods) { %>
+                <option><%= method %></option>
+            <% } %>
+        </select>
+              <label for="isNormal">Is Normal?</label>
+              <input type="checkbox" id="isNormal" name="isNormal" class="form-control" checked/>
+              
+              <label for="who">Who</label>
+              <select id="who" name="who" class="form-control" required >
+                  <option>Hayden</option>
+                  <option>Andrea</option>
+              </select>
+              <label for="amount">Amount</label>
+              <input type="number" step="0.01" id="amount" name="amount" class="form-control" required />
+              <br />
+          <button class="btn btn-warning btn-lg btn-block" type="submit">Plant Mango</button>
+      </form>
+    </div>
+  </div>
