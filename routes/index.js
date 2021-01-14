@@ -11,7 +11,7 @@ const router = require("express").Router(),
   
   const isAdmin = (req, res, next) => {
     if (!res.locals.currentUser || !res.locals.currentUser.isAdmin) {
-      res.render("/error/notFound");
+      res.render("error/notFound");
     } else {
       next();
     }};

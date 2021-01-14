@@ -27,11 +27,11 @@
       <div class="flashes">
         <% if (flashMessages) { %>
         <% if (flashMessages.success) { %>
-        <div class="alert alert-success">
+        <div class="alert alert-success" id="flash" style="position:absolute; top: 30px; right: 30px; z-index: 1; opacity: .9;">
           <%= flashMessages.success %>
         </div>
         <% } else if (flashMessages.error) { %>
-        <div class="alert alert-danger">
+        <div id="flash" class="alert alert-danger" style="position:absolute; top: 30px; right: 30px; z-index: 1; opacity: .9;">
           <%= flashMessages.error %>
         </div>
         <% } %>
@@ -43,5 +43,8 @@
     </div>
     <%- include ('partials/_footer') %>
   </body>
+  <script>
+    $("#flash").delay(7000).fadeOut();
+  </script>
 
 </html>

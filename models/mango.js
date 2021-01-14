@@ -33,6 +33,10 @@ const mongoose = require("mongoose"),
       },
       who: {
           type: String
+      },
+      tithing: {
+          type: Boolean,
+          default: false
       }
   });
 

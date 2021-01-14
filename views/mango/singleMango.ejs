@@ -1,26 +1,23 @@
 <%- include('../partials/_mangoNav') %>
 <div class="container p-4 small" style="max-width: 600px;">
-    <h1 class="text-center"><%= title %></h1>
+    <h2 class="text-center"><%= title %></h2>
     <div class="data-form">
-      <form action="/mangoes/add" method="POST">
+      <form action="/mangoes/<%= mango._id %>/update" method="POST">
         <label for="source"></label>
-        <input type="text" id="source" name="source" placeholder="Source" class="form-control form-control-sm" required autofocus/>
+        <input type="text" id="source" name="source" class="form-control form-control-sm" value="<%= mango.source %>" required autofocus/>
 
         <label for="date"></label>
-        <input type="date" id="date" name="date" class="form-control form-control-sm" placeholder="Date" required/>
+        <input type="date" id="date" name="date" class="form-control form-control-sm" value="<%= mango.date %>" required/>
         
         <% let categories = ['Rent', 'Car', 'Health Insurance', 'Medical', 'House/Bath', 'Personal Care', 'School', 'Util - Water', 'Util - Gas', 'Util - Phone', 'Util - Internet', 'Util - Electricity', 'Food', 'Clothes', 'Recreation/Entertainment', 'Travel', 'Gifts', 'Tithing', 'Mail', 'Other'] %>
         <label for="category"></label>
         <select id="category" name="category" class="form-control form-control-sm" required>
-            <option disabled selected>Select a category</option>
-            <option>Income</option>
-            
+            <option><%= mango.category %></option>
             <% for (category of categories) { %>
                 <option><%= category %></option>
             <% } %>
         </select>
         <br>
-
         <div class="row">
             <div class="col">
                 <div class="form-check">
@@ -39,14 +36,14 @@
 
             <div class="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="who" id="andrea" value="Andrea" checked>
-                    <label class="form-check-label" for="andrea">
+                    <input class="form-check-input" type="radio" name="who" id="expense" value="Expense">
+                    <label class="form-check-label" for="expense">
                     Andrea
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="who" id="hayden" value="Hayden">
-                    <label class="form-check-label" for="hayden">
+                    <input class="form-check-input" type="radio" name="who" id="income" value="Income" checked>
+                    <label class="form-check-label" for="income">
                     Hayden
                     </label>
                 </div>
@@ -54,22 +51,23 @@
           </div>
               
               <label for="description"></label>
-              <input type="text" id="description" name="description" placeholder="Description" class="form-control form-control-sm" />
+              <input type="text" id="description" name="description" value="<%= mango.description %>" class="form-control form-control-sm" />
               
               
               <label for="paymentMethod"></label>
               <% let methods = ['Cash', 'Credit Card', 'Checking Account', 'Savings Account', 'Gift Card', "Rewards Points"] %>
         <select id="paymentMethod" name="paymentMethod" class="form-control form-control-sm" required >
-            <option>Payment Method</option>
+            <option><%= mango.paymentMethod %></option>
             <% for (method of methods) { %>
                 <option><%= method %></option>
             <% } %>
         </select>
 
             <label for="amount"></label>
-              <input type="number" step="0.01" id="amount" name="amount" class="form-control form-control-sm" placeholder="Amount" required />
+              <input type="number" step="0.01" id="amount" name="amount" class="form-control form-control-sm" value="<%= mango.amount %>" required />
               <br />
-            <div class="row">
+
+              <div class="row">
                 <div class="col">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" name="isNormal" id="isNormal" checked>
@@ -83,8 +81,10 @@
                       </div>
                 </div>
             </div>
-                <br>
-          <button class="btn btn-warning btn-lg btn-block" type="submit">Plant Mango</button>
-      </form>
+            <br>
+              <div class="btn-group">
+                <button type="submit" class="btn btn-warning">Update</button></form>
+                <a href="/mangoes/<%= mango._id %>/delete"><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this mango?');">Delete</button></a>
+        </div>
     </div>
   </div>
