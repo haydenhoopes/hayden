@@ -15,7 +15,7 @@
         <tbody>
             <% allUsers.map(user => { %>
                 <tr>
-                    <td><a href="/users/<%= user._id %>"><%= user.name.firstName %> <%= user.name.lastName %></a></td>
+                    <td><a href="<%= urlPrefix %>/users/<%= user._id %>"><%= user.name.firstName %> <%= user.name.lastName %></a></td>
                     <td><%= user.username %></td>
                     <td><%= user.email %></td>
                     <td><%= user.isAdmin %></td>

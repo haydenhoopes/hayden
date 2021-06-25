@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "hayden-executor",
+    "name": "hayden",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "u1r7jcqgp2"
+  }
+}

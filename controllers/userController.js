@@ -1,17 +1,27 @@
 const User = require("../models/user"),
-    passport = require('passport');
+    passport = require('passport'),
+    parser = require("../api/parse");
+
+let urlPrefix = process.env.url_prefix;
+
+const makeUrl = (rem) => {
+  if (!urlPrefix && !rem) { return "/"}
+  else if (urlPrefix && !rem) {return urlPrefix}
+  else if (!urlPrefix && rem) { return rem}
+  else { return urlPrefix + rem}
+}
 
 const getUserParams = body => {
-    return {
-      name: {
-        firstName: body.firstName,
-        lastName: body.lastName
-      },
-      username: body.username,
-      email: body.email,
-      password: body.password,
-    };
+  return {
+    name: {
+      firstName: body.firstName,
+      lastName: body.lastName
+    },
+    username: body.username,
+    email: body.email,
+    password: body.password,
   };
+};
 
 module.exports = {
     getLogin: (req, res, next) => {
@@ -25,34 +35,34 @@ module.exports = {
     },
     postNewUser: (req, res, next) => {
         let newUser = getUserParams(req.body);
-        User.register(newUser, req.body.password, (error, user) => {
+        User.register(newUser, newUser.password, (error, user) => {
             if (user) {
                 req.flash("success", "User created successfully");
                 next();
             } else {
                 req.flash("error", `${error.message}`);
-                res.redirect("/users/new");
+                next();
             }
         })
     },
 
     userLogin: (req, res, next) => {
         passport.authenticate('local', {
-          successRedirect: '/',
+          successRedirect: makeUrl(),
           successFlash: true,
-          failureRedirect: '/users/login',
+          failureRedirect: makeUrl('/users/login'),
           failureFlash: true,
         })(req, res, next);
       },
 
       redirect: (req, res) => {
-        res.redirect(`${res.locals.redirect}`);
+        res.redirect(makeUrl(res.locals.redirect));
       },
 
       logout: (req, res, next) => {
         req.logout();
         req.flash("success", "You have been logged out!");
-        res.redirect('/');
+        res.redirect(makeUrl());
       },
 
       getUser: async (req, res, next) => {
@@ -61,15 +71,14 @@ module.exports = {
             try {
                 let user = await User.findById(id);
                 res.locals.user = user;
-                console.log(user);
                 res.render('user/singleUser');
             } catch (error) {
                 req.flash("error", error.message);
-                res.redirect(`/`);
+                res.redirect(makeUrl());
             }
         } else { // if nothing
             req.flash("error", "Log in to access this user's information");
-            res.redirect("/users/login");
+            res.redirect(makeUrl('/users/login'));
         }
       },
 
@@ -82,11 +91,11 @@ module.exports = {
             res.render('user/edit');
           } catch (error) {
               req.flash("error", error.message);
-              res.redirect('/');
+              res.redirect(makeUrl());
           }
         } else {
           req.flash("error", "Log in to access this user's information");
-          res.redirect("/users/login");
+          res.redirect(makeUrl("/users/login"));
         }
     },
 
@@ -97,14 +106,14 @@ module.exports = {
           let user = getUserParams(req.body);
           let updatedUser = await User.findByIdAndUpdate(id, user);
           req.flash("success", "User updated successfully!")
-          res.redirect(`/users/${id}`);
+          res.redirect(makeUrl(`/users/${id}`));
         } catch (error) {
           req.flash("error", error.message);
-          res.redirect(`/users/${id}/edit`);
+          res.redirect(makeUrl(`/users/${id}/edit`));
         }
       } else {
         req.flash("error", "Log in to access this user's information");
-        res.redirect(`/users/${id}`);
+        res.redirect(makeUrl(`/users/${id}`));
       }
     },
 
@@ -117,7 +126,7 @@ module.exports = {
         res.render("user/allUsers");
         } catch (error) {
           req.flash("error", "There was an error getting the users");
-          res.render('/');
+          res.redirect(makeUrl());
         }
       } else {
         res.render("error/notFound");

@@ -9,14 +9,32 @@
         <label for="date"></label>
         <input type="date" id="date" name="date" class="form-control form-control-sm" placeholder="Date" required/>
         
-        <% let categories = ['Rent', 'Car', 'Health Insurance', 'Medical', 'House/Bath', 'Personal Care', 'School', 'Util - Water', 'Util - Gas', 'Util - Phone', 'Util - Internet', 'Util - Electricity', 'Food', 'Clothes', 'Recreation/Entertainment', 'Travel', 'Gifts', 'Tithing', 'Mail', 'Other'] %>
+        <% let categories = [
+            {'group': 'Housing', 'options': ['Rent', 'Property Taxes', 'Household Repairs', 'HOA Fees']},
+            {'group': 'Transportation', 'options': ['Car Payment', 'Public Transportation', 'Gas', 'Tires', 'Maintenance', 'Parking', 'Repairs', 'Registration and DMV Fees']},
+            {'group': 'Food', 'options': ['Groceries', 'Restaurants', 'Pet Food']},
+            {'group': 'Utilities', 'options': ['Electricity', 'Water', 'Gas', 'Garbage', 'Phones', 'Cable', 'Internet']},
+            {'group': 'Clothing', 'options': ['For Hayden', 'For Andrea', 'For Children']},
+            {'group': 'Medical', 'options': ['Primary Care', 'Dental Care', 'Specialty Care', 'Urgent Care', 'Medications', 'Mental Health']},
+            {'group': 'Insurance', 'options': ['Health Insurance', "Homeowner's Insurance", 'Auto Insurance', 'Life Insurance']},
+            {'group': 'Household Items', 'options': ['Toiletries', 'Laundry', 'Kitchen', 'Cleaning', 'Tools']},
+            {'group': 'Personal', 'options': ['Gym Membership', 'Haircuts and Salon', 'Babysitter', 'Computer', 'Other']},
+            {'group': 'Debt', 'options': ['Personal Loans', 'Student Loans', 'Credit Cards']},
+            {'group': 'Education', 'options': ["Children's College", "Andrea's Studies", "Hayden's Studies", 'School Supplies', 'Schoolbooks']},
+            {'group': 'Savings', 'options': ['Savings', 'Investing', 'Emergency Fund', 'Big Purchase', 'Other Savings']},
+            {'group': 'Gifts/Donations', 'options': ['Sent Money','Gift - General', 'Tithing', 'Birthday', 'Anniversary', 'Wedding', 'Christmas', 'Special Occasion', 'Charities']},
+            {'group': 'Entertainment', 'options': ['Activities or Games', 'Books', 'Movies', 'Concerts', 'Vacations','Sports' , 'Entertainment Subscriptions']}]; %>
+
         <label for="category"></label>
         <select id="category" name="category" class="form-control form-control-sm" required>
             <option disabled selected>Select a category</option>
             <option>Income</option>
-            
-            <% for (category of categories) { %>
-                <option><%= category %></option>
+            <% for (categoryGroup of categories) { %>
+                <optgroup label="<%= categoryGroup.group %>">
+                    <% for (category of categoryGroup.options)  {%>
+                        <option><%= category %></option>
+                    <% } %>
+                </optgroup><%= category %>
             <% } %>
         </select>
         <br>
@@ -39,13 +57,13 @@
 
             <div class="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="who" id="andrea" value="Andrea" checked>
+                    <input class="form-check-input" type="radio" name="who" id="andrea" value="Andrea">
                     <label class="form-check-label" for="andrea">
                     Andrea
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="who" id="hayden" value="Hayden">
+                    <input class="form-check-input" type="radio" name="who" id="hayden" value="Hayden" checked>
                     <label class="form-check-label" for="hayden">
                     Hayden
                     </label>
@@ -54,13 +72,13 @@
           </div>
               
               <label for="description"></label>
-              <input type="text" id="description" name="description" placeholder="Description" class="form-control form-control-sm" />
+              <input type="text" id="description" name="description" placeholder="Description (optional)" class="form-control form-control-sm" />
               
               
               <label for="paymentMethod"></label>
               <% let methods = ['Cash', 'Credit Card', 'Checking Account', 'Savings Account', 'Gift Card', "Rewards Points"] %>
         <select id="paymentMethod" name="paymentMethod" class="form-control form-control-sm" required >
-            <option>Payment Method</option>
+            <option disabled selected>Payment Method</option>
             <% for (method of methods) { %>
                 <option><%= method %></option>
             <% } %>
@@ -78,7 +96,7 @@
                 </div>
                 <div class="col">
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="tithing" id="tithing" checked>
+                        <input type="checkbox" class="form-check-input" name="tithing" id="tithing">
                         <label class="form-check-label" for="tithing">Tithing Applicable?</label>
                       </div>
                 </div>

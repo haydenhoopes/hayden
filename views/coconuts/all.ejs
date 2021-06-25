@@ -1,0 +1,22 @@
+<%- include('../partials/_coconutNav') %>
+
+<div class="container mt-3">
+    <% if (!currentUser) { %><h2 class="display-1">Projects</h2><% } else { %><h2 class="display-1">Coconuts</h2><% }%>
+    <% if (currentUser && currentUser.isAdmin) { %>
+        <a href="<%= urlPrefix %>/coconuts/create" class="btn text-light" style="border-color: rgb(150, 90, 62);background-color: rgb(150, 90, 62);">New Coconut</a>
+    <% } %>
+
+    <ul class="list-group">
+    
+    <% coconuts.forEach(coconut => { %>
+        <a class="text-decoration-none" href="<%= urlPrefix %>/coconuts/<%= coconut._id %>">
+        <li class="list-group-item">
+            <h3 class="display-4"><%= coconut.title %></h3>
+            <p><%= coconut.shortDescription %></p>
+        </li>
+    </a>
+               <% }) %>
+    
+    </div>
+
+</div>

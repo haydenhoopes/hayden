@@ -1,5 +1,18 @@
-<div class="container">
-<h1><%= user.name.firstName %> <%= user.name.lastName %></h1>
+<div class="container mt-3">
+    
+    <p><h3>Name: <%= user.name.firstName %> <%= user.name.lastName %></h3></p>
+    <div class="row">
+        <div class="col-sm-6">
+            <small>ID No. <%= user._id %></small>
+        </div>
 
-<a href="/users/<%= user._id %>/edit"><button class="btn btn-primary btn-lg btn-block" type="button">Edit</button></a>
+        <div class="col-sm-6">
+            <p>Email: <%= user.email %></p>
+
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="<%= urlPrefix %>/users/<%= user._id %>/edit"><button class="btn btn-primary btn-lg btn-block" type="button">Edit</button></a>
+    </div>
 </div>

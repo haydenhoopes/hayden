@@ -12,11 +12,6 @@ mongooseUniqueValidator = require('mongoose-unique-validator'),
             required: true
         },
     },
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
     email: {
         type: String,
         required: true
@@ -25,11 +20,15 @@ mongooseUniqueValidator = require('mongoose-unique-validator'),
         type: Boolean,
         default: false
     },
-    // password: {
-    //     type: String,
-    //     required: true,
-    //     min: 5,
-    //   },
+    username: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true,
+        min: 10,
+      },
   });
 
 userSchema.plugin(passportLocalMongoose, {

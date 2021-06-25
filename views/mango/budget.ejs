@@ -1,0 +1,53 @@
+<%- include('../partials/_mangoNav') %>
+
+ 
+
+<div class="" style="max-width: 1000px;margin:auto">
+  <h1 class="text-center"><%= title %></h1>
+  <p>Total: $ <%= total %></p>
+  
+<div class="table-responsive">
+<table class="table small table-borderless table-striped table-sm table-hover">
+  <thead>
+      <tr>
+          <th class="d-none d-sm-none d-md-table-cell">ID</th>
+          <th>Date</th>
+          <th>Source</th>
+          <th class="d-none d-sm-none d-md-table-cell">Category</th>
+          <!-- <th class="d-none d-sm-none d-md-table-cell">Type</th> -->
+          <th class="d-none d-sm-none d-md-table-cell">Description</th>
+          <th class="d-none d-sm-none d-md-table-cell">Payment Method</th>
+          <th class="d-none d-sm-none d-md-table-cell">Is Normal?</th>
+          <th class="d-none d-sm-none d-md-table-cell">Who?</th>
+          <th class="text-right">Amount</th>
+      </tr>
+  </thead>
+  <tbody>
+      <% let count = 1; %>
+      <% mangoes.map(mango => { %>
+          <% if (mango.type == "Income" && mango.amount > 100) { %>
+              <tr class="table-success">
+          <% } else if (mango.type == "Expense" && mango.amount > 100) { %>
+              <tr class="table-danger">
+          <% } else { %>
+              <tr>
+          <% } %>
+              <td class="d-none d-sm-none d-md-table-cell"><%= count %></td>
+              <td><a href="/mangoes/<%= mango._id %>"><%= mango.date %></a></td>
+              <td><%= mango.source %></td>
+              <td class="d-none d-sm-none d-md-table-cell"><%= mango.category %></td>
+              <!-- <td class="d-none d-sm-none d-md-table-cell"><%= mango.type %></td> -->
+              <td class="d-none d-sm-none d-md-table-cell"><%= mango.description %></td>
+              <td class="d-none d-sm-none d-md-table-cell"><%= mango.paymentMethod %></td>
+              <td class="d-none d-sm-none d-md-table-cell"><%= mango.isNormal %></td>
+              <td class="d-none d-sm-none d-md-table-cell"><%= mango.who %></td>
+              <td class="text-right">$ <%= mango.amount %></td>
+          </tr>
+          <% count++; %>
+      <% }) %> 
+  </tbody>
+</table>
+</div>
+</div>
+
+

@@ -4,47 +4,56 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hayden Hoopes</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./<%= urlPrefix %>/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./<%= urlPrefix %>/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./<%= urlPrefix %>/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./<%= urlPrefix %>/css/style.css">
   </head>
   <body id="body">
-    <div style="min-height: calc(100vh - 150px);">
-
-
-      <%- include ('partials/_navbar') %>
-      <div class="">
+        <%- include ('partials/_navbar') %>
 
       <!-- Flash Messages -->
       <div class="flashes">
         <% if (flashMessages) { %>
         <% if (flashMessages.success) { %>
-        <div class="alert alert-success" id="flash" style="position:absolute; top: 30px; right: 30px; z-index: 1; opacity: .9;">
-          <%= flashMessages.success %>
-        </div>
+          <div class="toast" style="position:fixed; top: 50px; right: 50px; z-index: 1021;opacity: .95;" id="flash">
+            <div class="toast-header">
+              Success!
+            </div>
+            <div class="toast-body">
+              <%= flashMessages.success %>
+            </div>
+          </div>
         <% } else if (flashMessages.error) { %>
-        <div id="flash" class="alert alert-danger" style="position:absolute; top: 30px; right: 30px; z-index: 1; opacity: .9;">
-          <%= flashMessages.error %>
-        </div>
+          <div class="toast text-danger" style="position:fixed; top: 50px; right: 50px; z-index: 1021;opacity: .95;" id="flash">
+            <div class="toast-header">
+              Error
+            </div>
+            <div class="toast-body">
+              <%= flashMessages.error %>
+            </div>
+          </div>
         <% } %>
         <% } %>
       </div>
 
+      <div class="text-dark">
         <%- body %>
-    </div>
-    </div>
-    <%- include ('partials/_footer') %>
+      </div>
   </body>
   <script>
-    $("#flash").delay(7000).fadeOut();
+    $("#flash").delay(10000).fadeOut();
   </script>
 
+
+  <footer class="small text-dark">
+    <%- include ('partials/_footer') %>
+  </footer>
 </html>
