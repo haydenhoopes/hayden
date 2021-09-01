@@ -1,5 +1,3 @@
-<%- include('../partials/_coconutNav') %>
-
 <div class="container mt-3">
     <h2 class="mb-4">Update Coconut</h2>
     <form action="<%= urlPrefix %>/coconuts/update %>" method="POST">
@@ -7,7 +5,7 @@
             <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-4">
-                        <input type="hidden" name="_id" value="<% coconut._id %>" id="_id">
+                        <input type="hidden" name="_id" value="<%= coconut._id %>" id="_id">
 
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -36,13 +34,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="action">Action</label> 
-                    <textarea name="action" id="action" rows="2" class="form-control" required><%= coconut.action %> </textarea>
+                    <label for="aaction">Action</label> 
+                    <textarea name="aaction" id="aaction" rows="2" class="form-control" required><%= coconut.aaction %> </textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="result">Result</label> 
-                    <textarea name="result" id="result" rows="2" class="form-control" required><%= coconut.result %> </textarea>
+                    <label for="rresult">Result</label> 
+                    <textarea name="rresult" id="rresult" rows="2" class="form-control" required><%= coconut.rresult %> </textarea>
                 </div>
                 
                 <div class="form-group">
@@ -53,14 +51,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="location">Location</label>
-                            <input type="text" name="location" id="location" class="form-control" value="<%= coconut.location %>" >
+                            <label for="llocation">Location</label>
+                            <input type="text" name="llocation" id="llocation" class="form-control" value="<%= coconut.llocation %>" >
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="role">Role</label>
-                            <input type="text" name="role" id="role" class="form-control" value="<%= coconut.role %>" >
+                            <label for="rrole">Role</label>
+                            <input type="text" name="rrole" id="rrole" class="form-control" value="<%= coconut.rrole %>" >
                         </div>
                     </div>
                 </div>
@@ -79,67 +77,37 @@
                     <input type="date" name="endDate" id="endDate" class="form-control" required value="<%= coconut.endDate %>" >
                 </div>
                 
-                <label for="languages">Languages</label>
-                <div class="row">
-                    <div class="col-4 form-check">
-                        <input type="checkbox" name="languages[]" id="python" value="python" <% if (coconut && coconut.languages.includes("python")) { %> checked <% } %>>
-                        <label for="python">Python</label>
-                    </div>
-                    <div class="col-4">
-                        <input type="checkbox" name="languages[]" id="javascript" value="javascript" <% if (coconut && coconut.languages.includes("javascript")) { %> checked <% } %>>
-                        <label for="javascript">JavaScript</label>
-                    </div>
-                    <div class="col-4">
-                        <input type="checkbox" name="languages[]" id="R" value="R" <% if (coconut && coconut.languages.includes("R")) { %> checked <% } %>>
-                        <label for="R">R</label>
-                    </div>
-                </div>
                 
                 <div class="form-group">
                     <label for="technologies[]">Technologies</label>   
-                    <select name="technologies[]" id="technologies" class="form-control" multiple size="3">
-                        <option value="aws_apigateway">AWS APIGateway</option>
-                        <option value="aws_cognito">AWS Cognito</option>
-                        <option value="aws_dynamodb">AWS DynamoDB</option>
-                        <option value="aws_lambda">AWS Lambda</option>
-                        <option value="aws_s3">AWS S3</option>
-                        <option value="beautiful_soup">Beautiful Soup</option>
-                        <option value="chalice">Chalice</option>
-                        <option value="django">Django</option>
-                        <option value="flask">Flask</option>
-                        <option value="java">Java</option>
-                        <option value="jupyter_notebook">Jupyter Notebook</option>
-                        <option value="mongodb">MongoDB</option>
-                        <option value="mysql">MySQL</option>
-                        <option value="nodejs">Node.js</option>
-                        <option value="php">PHP</option>
-                        <option value="postgresql">PostgreSQL</option>
-                        <option value="raspberry_pi">Raspberry Pi</option>
-                        <option value="sqlite">SQLite</option>
+                    <select name="technologies[]" id="technologies" class="form-control" style="resize:vertical" multiple size="6">
+                        <% for (t of technologies) { %>
+                            <option value="<%= t.name %>" <% if (coconut.technologies.includes(t.name)) { %>selected<% } %>><%= t.name %></option>
+                        <% } %> 
                     </select>
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="time">Time (hours)</label>
-                            <input type="number" name="time" id="time" max="499" step=".5" min="0" class="form-control" value="<%= coconut.time %>" >
+                            <label for="ttime">Time (hours)</label>
+                            <input type="number" name="ttime" id="ttime" max="499" step=".5" min="0" class="form-control" value="<%= coconut.ttime %>" >
                         </div>
                     </div>
                     <div class="col-6">
                         <p>Hidden</p>
                         <div class="form-check form-check-inline">
-                            <input type="radio" name="hidden" id="hiddenTrue" value="true" class="form-check-input">
+                            <input type="radio" name="hhidden" id="hiddenTrue" value="true" class="form-check-input">
                             <label for="hiddenTrue" class="form-check-label">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" name="hidden" id="hiddenFalse" value="false" class="form-check-input" checked>
+                            <input type="radio" name="hhidden" id="hiddenFalse" value="false" class="form-check-input" checked>
                             <label for="hiddenFalse" class="form-check-label" >No</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="url">Live URL</label>
-                    <input type="text" name="url" id="url" class="form-control" value="<%= coconut.url %>" >
+                    <label for="uurl">Live URL</label>
+                    <input type="text" name="uurl" id="url" class="form-control" value="<%= coconut.uurl %>" >
                 </div>
                 <div class="row">
                     <div class="col-6">
@@ -159,8 +127,8 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="type">Type of Project</label>
-                            <input type="text" name="type" id="type" placeholder="Work Project" class="form-control" value="<%= coconut.type %>" >
+                            <label for="ttype">Type of Project</label>
+                            <input type="text" name="ttype" id="ttype" placeholder="Work Project" class="form-control" value="<%= coconut.ttype %>" >
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -175,3 +143,48 @@
         <input type="submit" value="Submit" class="btn btn-primary">
     </form>
 </div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">New Technology</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <label for="techName">Name</label>
+          <input type="text" name="techName" id="newTech" class="form-control">
+        </div>
+        <button id="newTechBtn" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      $("#newTechBtn").click(function() {
+          let tech = $("#newTech").val();
+          if (!tech == "") {
+            $.post({
+                url: "<%= urlPrefix %>/technologies",
+                success: () => {
+                    $("#newTechBtn").toggleClass("btn-primary");
+                    $("#newTechBtn").toggleClass("btn-success");
+                    $("#newTechBtn").html("Success!");
+                    setTimeout(function(){
+                        $('#myModal').modal('toggle');
+                        $("#technologies").append(`<option value="${$("#newTech").val().replaceAll(" ", "_")}">${$("#newTech").val()}</option>`)
+                    }, 2000);
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+                data: {"name": $("#newTech").val()}
+            })
+          }
+      })
+  </script>

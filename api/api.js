@@ -1,4 +1,5 @@
 const axios = require("axios");
+const qs = require('qs');
 require("dotenv").config();
 const root = process.env.haydenApiEndpoint;
 if (!root) {console.log("No api endpoint specified.")};
@@ -29,11 +30,10 @@ module.exports = {
     },
 
     delete: (endpoint, data) => {
-        console.log(data["_id"]);
         return axios.post(`${root}/${endpoint}/delete`, data, {
             headers: {
                 'Content-Type': 'application/json',
             }
         });
-    }
+    },
 }

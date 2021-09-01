@@ -47,7 +47,7 @@ module.exports = {
       res.locals.coconuts = data.data;
       res.render(`${endpoint}/all`);
     }).catch(err => {
-      req.flash("error", error.message);
+      req.flash("error", err.message);
       res.send(err);
     });
  },
@@ -58,6 +58,7 @@ module.exports = {
     let startDate=new Date(data.data[0].startDate), endDate=new Date(data.data[0].endDate);
     res.locals.coconut.startDateString = `${months[startDate.getMonth()]} ${startDate.getDate()}, ${startDate.getFullYear()}`;
     res.locals.coconut.endDateString = `${months[endDate.getMonth()]} ${endDate.getDate()}, ${endDate.getFullYear()}`;
+    res.locals.i = req.query.i;
     res.render(`${endpoint}/single`);
   }).catch(err => {
     req.flash("error", err.message);
@@ -66,11 +67,17 @@ module.exports = {
  },
  
  getCreate: (req, res, next) => {
-  res.render(`${endpoint}/create`);
+   api.scan("technologies").then(techs => {
+     res.locals.technologies = techs.data;
+     res.render(`${endpoint}/create`);
+   }).catch(err => {
+     res.flash("error", err);
+     res.render(`${endpoint}/create`);
+   })
  },
 
  postCreate: (req, res, next) => {
-   let data = JSON.stringify(encodeURI(req.body));
+   let data = JSON.stringify(req.body);
    api.create(endpoint, data).then(response => {
      req.flash("success", "Coconuts planted successfully!");
      res.redirect(`${urlPrefix}/${endpoint}`);
@@ -80,20 +87,23 @@ module.exports = {
    })
 },
 
- getUpdate: (req, res, next) => {
-  let id = req.params.id;
-  api.get(endpoint, id).then(data => {
-    res.locals.coconut = data.data[0];
-    res.render(`${endpoint}/update`);
-  }).catch(err => {
-    req.flash("error", error.message);
-    res.redirect(`${urlPrefix}/${endpoint}/${id}`);
-  })
+ getUpdate: async (req, res, next) => {
+   try {
+      let techs = await api.scan("technologies");
+      res.locals.technologies = techs.data;
+      let id = req.params.id;
+      let data = await api.get(endpoint, id);
+      res.locals.coconut = data.data[0];
+      res.render(`${endpoint}/update`);
+   } catch (error) {
+      req.flash("error", error.message);
+      res.redirect(`${urlPrefix}/${endpoint}/${id}`);
+   }
  },
 
  postUpdate: (req, res, next) => {
   let id = req.body._id;
-  api.update(endpoint, JSON.stringify(req.body)).then(data => {
+  api.update(endpoint, JSON.stringify(req.body)).then(() => { 
     req.flash("success", "Coconut taken care of successfully!");
     res.redirect(`${urlPrefix}/${endpoint}/${id}`);
   }).catch(err => {
@@ -104,8 +114,8 @@ module.exports = {
 
  delete: (req, res, next) => {
   let id = req.params.id;
-  api.delete(endpoint, {_id: id}).then(r => {
-    req.flash("success", r);
+  api.delete(endpoint, {_id: id}).then(() => {
+    req.flash("success", "Deletion successful!");
     res.redirect(`${urlPrefix}/${endpoint}`);
   }).catch(err => {
     req.flash("error", err);

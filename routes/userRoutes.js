@@ -1,16 +1,17 @@
 "use strict";
 
 const router = require("express").Router(),
+  middleware = require("../custom_middleware/middleware"),
   userController = require("../controllers/userController");
 
+// Login
 router.get("/login", userController.getLogin);
-router.post("/login", userController.userLogin);
-router.get("/new", userController.newUser);
-router.post('/new', userController.postNewUser, userController.userLogin);
-router.get('/logout', userController.logout);
-router.get("/all", userController.allUsers);
-router.get('/:id/edit', userController.editUser);
-router.post("/:id/update", userController.updateUser);
-router.get('/:id', userController.getUser);
+router.get("/loginWithToken", userController.loginWithToken, userController.setCookie);
+router.get("/logout", userController.logout);
+
+// Messages
+router.get("/messages", userController.getMessages);
+router.post("/messages", userController.postMessage);
+router.post("/messages/deleteMany", userController.deleteMany);
 
 module.exports = router;

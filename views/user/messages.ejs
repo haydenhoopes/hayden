@@ -1,0 +1,42 @@
+<div class="container">
+    <h2 class="display-2 my-4">Messages</h2>
+    <table class="table table-striped">
+        <tr>
+            <th></th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Message</th>
+        </tr>
+    <form action="<%= urlPrefix %>/users/messages/deleteMany" method="POST">
+    <% for (m of messages) { %>
+        <tr>
+            <td><input type="checkbox" name="messagesToDelete[]" id="<%= m._id %>" value="<%= m._id %>"></td>
+            <td><%= m.dateAdded %></td>
+            <td><%= m.title %></td>
+            <td><%= m.message %></td>
+        </tr>
+    <% } %>
+    </table>
+    <input type="submit" value="Delete All" class="btn btn-danger" id="deleteButton" disabled>
+    </form>
+</div>
+
+<script>
+    $(":checkbox").each(function() {
+        $(this).click(function() {
+            let disable = true;
+            $(":checkbox").each(function() {
+                if (this.checked) {
+                    disable = false;
+                    return;
+                }
+            });
+            if (disable == true) {
+                $("#deleteButton").prop("disabled",true);
+            } else {
+                $("#deleteButton").prop("disabled",false);
+            }
+        }
+    )
+    })
+</script>

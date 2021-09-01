@@ -1,4 +1,6 @@
-<%- include('../partials/_coconutNav') %>
+<div style="width:100%;max-height: 300px;overflow: hidden;">
+    <img class="card-img-top" src="https://picsum.photos/id/<%= i %>/1500/600" alt="picture">
+</div>
 
 <% 
 var stringToColour = function(str) {
@@ -15,13 +17,13 @@ var stringToColour = function(str) {
   }
 %>
 
-<% if (coconut.hidden == "false" || (currentUser && currentUser.isAdmin)) { %>
+<% if (coconut.hhidden == "false" || (currentUser && currentUser.isAdmin)) { %>
     <div class="container mt-3">
         <h1 class="mb-4 display-3"><%= coconut.title %></h1>
         <div class="row">
             <div class="col-md-9 pr-5">
                 <h3 class="font-weight-lighter"><%= coconut.headline %></h3>
-                <p class="font-weight-bolder mb-4"><%= coconut.location %></p>
+                <p class="font-weight-bolder mb-4"><%= coconut.llocation %></p>
                 
                 <% if (coconut.video) { %>
                     <iframe width=100% class="mb-4" src="<%= coconut.video %>"></iframe>
@@ -29,21 +31,21 @@ var stringToColour = function(str) {
 
                 <p><%= coconut.situation %></p>
                 <p><%= coconut.task %></p>
-                <p><%= coconut.action %></p>
-                <p><%= coconut.result %></p>
+                <p><%= coconut.aaction %></p>
+                <p><%= coconut.rresult %></p>
             </div>
-            <div class="col-md-3 py-4 px-4" style="background-color: rgb(252, 231, 222); border-radius: 5px;">
+            <div class="col-md-3 py-4 px-4" style="background-color: rgb(242, 242, 242); border-radius: 5px;">
                 <div>
                     <h3>Information</h3>
                 </div>
                 <ul>
                     <p><b>Started </b> <%= coconut.startDateString %></p>
                     <p><b>Finished </b> <%= coconut.endDateString %></p>
-                    <p><b>Time to Complete:</b> <%= coconut.time %> hours</p>
-                    <p><b>Project Type:</b> <%= coconut.type %> </p>
+                    <p><b>Time to Complete:</b> <%= coconut.ttime %> hours</p>
+                    <p><b>Project Type:</b> <%= coconut.ttype %> </p>
                     <p><b>Project Class:</b> <%= coconut.category %></p>
-                    <p><b>Role:</b> <%= coconut.role %></p>
-                    <% if (coconut.languages) { %><p><b>Languages:</b> <% for (l of coconut.languages) { %> <%= l %> <% } %></p><% } %>
+                    <p><b>Role:</b> <%= coconut.rrole %></p>
+                    
                     <li>Technologies:
                         <% if (coconut.technologies) { %><ul class="small">
                             <% for (i=0; i<coconut.technologies.length; i++) { %>
@@ -53,16 +55,10 @@ var stringToColour = function(str) {
                         </ul><% } %>
                     </li>
                     <br>
-                    <a class="btn btn-large btn-primary btn-block" href="<%= coconut.url %>">Go to project</a>
+                    <a class="btn btn-large btn-primary btn-block" target="_blank" href="<%= coconut.uurl %>">Go to project</a>
                     <% if (currentUser && currentUser.isAdmin) { %>
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <a class="btn btn-success btn-block" href="<%= urlPrefix %>/coconuts/<%= coconut._id %>/edit">Edit</a>    
-                            </div>
-                            <div class="col-6">
-                                <a class="btn btn-danger btn-block" href="<%= urlPrefix %>/coconuts/<%= coconut._id %>/delete" onclick="return confirm('Are you sure you want to remove this coconut?')">Remove</a>
-                            </div>
-                        </div>
+                            <a class="btn btn-success btn-block" href="<%= urlPrefix %>/coconuts/<%= coconut._id %>/edit">Edit</a>    
+                            <a class="btn btn-danger btn-block" href="<%= urlPrefix %>/coconuts/<%= coconut._id %>/delete" onclick="return confirm('Are you sure you want to remove this coconut?')">Remove</a>
                     <% } %>
                 
                     
