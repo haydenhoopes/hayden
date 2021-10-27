@@ -5,6 +5,7 @@ const router = require("express").Router(),
   homeRoutes = require("./homeRoutes"),
   userRoutes = require("./userRoutes"),
   projectRoutes = require("./projectRoutes"),
+  apiRoutes = require("./apiRoutes"),
   mangoRoutes = require('./mangoRoutes'),
 
   mangoController = require("../controllers/mangoController");
@@ -22,6 +23,7 @@ const router = require("express").Router(),
 // router.use("/subscribers", subscriberRoutes);
 // router.use("/courses", courseRoutes);
 router.use("/coconuts", projectRoutes);
+router.use("/api", apiRoutes);
 router.use("/users", userRoutes);
 router.use("/", homeRoutes);
 router.use(errorRoutes);

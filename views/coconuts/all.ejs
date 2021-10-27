@@ -1,13 +1,38 @@
-<div class="container">
+<div class="container mt-5">
     <% if (!currentUser) { %><h2 class="display-2 mb-5">Projects</h2><% } else { %><h2 class="display-1">Coconuts</h2><% }%>
-    <% if (currentUser && currentUser.isAdmin) { %>
-        <a href="<%= urlPrefix %>/coconuts/create" class="btn text-light my-4" style="border-color: rgb(150, 90, 62);background-color: rgb(150, 90, 62);">New Coconut</a>
-    <% } %>
 
-    
-    <div class="row">
+        <div id="accordion">
+            <div>
+                <a class="card-link text-secondary" data-toggle="collapse" href="#collapseOne">
+                  Filters
+                </a>
+                <% if (currentUser && currentUser.isAdmin) { %>
+                    <a class="card-link" href="<%= urlPrefix %>/coconuts/create" style="float: right;">
+                        New Project
+                      </a>
+                <% } %>
+            </div>
+
+            
+              <div id="collapseOne" class="collapse" data-parent="#accordion">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h3>Language</h3>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" value="JavaScript">JavaScript
+                        </label>
+                      </div>
+                  </div>
+                </div>
+              </div>
         
+          </div>
+
+    <div class="row">        
         <% for (c in coconuts) { %>
+          <% let iteration = 0 %>
+          <% if (coconuts[c].hhidden == "false" && !currentUser.isAdmin) { %>
             <div class="col-md-4 my-3">
                 <a href="<%= urlPrefix %>/coconuts/<%= coconuts[c]._id %>?i=<%=Number(c)+9 %>" class="text-decoration-none">
                 <div class="card my-3" style="width:100%;height:100%;">
@@ -20,7 +45,9 @@
                 </div>
                 </a>
             </div>
-            <% if (c % 3 == 2 && coconuts.length - c > 1) { %></div><div class="row"><% } %>
+            <% if (iteration % 3 == 2 && coconuts.length - iteration > 1) { %></div><div class="row"><% } %>
+              <% iteration++; %>
+               <% } %>
                <% } %>
     </div>
 </div>
@@ -28,4 +55,6 @@
     div .card:hover {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+
+    
 </style>

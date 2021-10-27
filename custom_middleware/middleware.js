@@ -10,6 +10,9 @@ module.exports = {
             res.locals.currentUser = undefined;
         } else {
             let decoded = jwt.decode(access_token);
+
+            // {"sub":"5f5e0fbd-d6a8-412a-830b-85e0c5a17a37","iss":"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_rMXVmDr7r","version":2,"client_id":"1fbcgp5ageie2cas98dsq65d9o","origin_jti":"52b57292-0ef3-4bac-8896-80c5e0cee43f","event_id":"82f3fec3-fe76-4ce4-ad26-265517bf3465","token_use":"access","scope":"aws.cognito.signin.user.admin phone openid profile email","auth_time":1631238796,"exp":1631242396,"iat":1631238796,"jti":"7a644178-9b97-4652-a2b3-e6bb9dd87959","username":"haydenhoopes"}
+
             if (!decoded) {
                 res.locals.currentUser = undefined;
             } else {
@@ -29,6 +32,13 @@ module.exports = {
                     res.locals.currentUser = undefined;
                 }
             }
+        }
+    },
+
+    loginRequired: (req, res, next) => {
+        if (process.env.loginRequired == "false") {
+            res.locals.currentUser = {};
+            res.locals.currentUser.isAdmin = true;
         }
     },
 

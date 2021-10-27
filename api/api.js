@@ -6,8 +6,17 @@ if (!root) {console.log("No api endpoint specified.")};
 
 module.exports = {
     scan: (endpoint) => {
-            return axios.get(`${root}/${endpoint}`);
+            return axios.get(`${root}/s/${endpoint}`);
         },
+    pscan: (endpoint, per_page=undefined) => {
+        if (per_page) { per_page = "?per_page="+per_page}
+        return axios.get(`${root}/p/${endpoint}${per_page}`);
+    },
+
+    qscan: (endpoint) => {
+        return axios.get(`${root}/q/${endpoint}`);
+    },
+    
     get: (endpoint, id) => {
         return axios.get(`${root}/${endpoint}/${id}`);
     },

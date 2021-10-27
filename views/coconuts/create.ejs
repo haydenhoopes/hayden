@@ -110,14 +110,7 @@
                     <input type="text" name="uurl" id="url" class="form-control">
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="images">Images</label>
-                            <input type="image" name="images" id="images" class="form-control" disabled>
-                            <small>Image uploads disabled.</small>
-                        </div>
-                    </div>
-                    <div class="col-6">
+                    <div class="col-12">
                         <div class="form-group">
                             <label for="video">Video URL</label>
                             <input type="text" name="video" id="video" class="form-control">
@@ -141,6 +134,16 @@
             </div>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+
+
+    <form action="">
+        <div class="row">
+            <div class="col-12">
+                    <label for="files">Files</label><span style="float: right;"><p class="btn btn-sm btn-outline-primary" id="newFileButton">Add Another File</p></span>
+                    <input type="file" name="files" id="files">         
+            </div>
+        </div>
     </form>
 </div>
 
@@ -186,5 +189,5 @@
                 data: {"name": $("#newTech").val()}
             })
           }
-      })
+      });
   </script>

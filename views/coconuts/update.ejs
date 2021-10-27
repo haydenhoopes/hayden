@@ -81,9 +81,9 @@
                 <div class="form-group">
                     <label for="technologies[]">Technologies</label>   
                     <select name="technologies[]" id="technologies" class="form-control" style="resize:vertical" multiple size="6">
-                        <% for (t of technologies) { %>
-                            <option value="<%= t.name %>" <% if (coconut.technologies.includes(t.name)) { %>selected<% } %>><%= t.name %></option>
-                        <% } %> 
+                            <% for (t of technologies) { %>
+                                <option value="<%= t.name %>" <% if (coconut.technologies && coconut.technologies.includes(t.name)) { %>selected<% } %>><%= t.name %></option>
+                            <% } %> 
                     </select>
                 </div>
                 <div class="row">
@@ -110,14 +110,7 @@
                     <input type="text" name="uurl" id="url" class="form-control" value="<%= coconut.uurl %>" >
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="images">Images</label>
-                            <input type="image" name="images" id="images" class="form-control" disabled>
-                            <small>Image uploads disabled.</small>
-                        </div>
-                    </div>
-                    <div class="col-6">
+                    <div class="col-12">
                         <div class="form-group">
                             <label for="video">Video URL</label>
                             <input type="text" name="video" id="video" class="form-control" value="<%= coconut.video %>" >

@@ -1,4 +1,9 @@
 const api = require("../api/api");
+const s3 = require("../api/s3");
+const fs = require("fs");
+let aws = require("aws-sdk");
+aws.config.update({region: 'us-east-1'});
+let S3 = new aws.S3();
 const endpoint = "coconuts";
 
 let urlPrefix = process.env.url_prefix;
@@ -52,18 +57,20 @@ module.exports = {
     });
  },
 
- getsingle: (req, res, next) => {
-  api.get(endpoint, req.params.id).then(data => {
-    res.locals.coconut = data.data[0];
-    let startDate=new Date(data.data[0].startDate), endDate=new Date(data.data[0].endDate);
-    res.locals.coconut.startDateString = `${months[startDate.getMonth()]} ${startDate.getDate()}, ${startDate.getFullYear()}`;
-    res.locals.coconut.endDateString = `${months[endDate.getMonth()]} ${endDate.getDate()}, ${endDate.getFullYear()}`;
-    res.locals.i = req.query.i;
-    res.render(`${endpoint}/single`);
-  }).catch(err => {
-    req.flash("error", err.message);
-    res.redirect(`${urlPrefix}/${endpoint}`);
-  })
+ getsingle: async (req, res, next) => {
+  let data = await api.get(endpoint, req.params.id);
+  res.locals.coconut = data.data[0];
+
+  // Date formatting, nothing special
+  let startDate=new Date(data.data[0].startDate), endDate=new Date(data.data[0].endDate);
+  res.locals.coconut.startDateString = `${months[startDate.getMonth()]} ${startDate.getDate()}, ${startDate.getFullYear()}`;
+  res.locals.coconut.endDateString = `${months[endDate.getMonth()]} ${endDate.getDate()}, ${endDate.getFullYear()}`;
+
+  // Image format, nothing special
+  res.locals.i = req.query.i;
+
+  res.locals.coconut.files;
+  res.render(`${endpoint}/single`);
  },
  
  getCreate: (req, res, next) => {
@@ -78,8 +85,10 @@ module.exports = {
 
  postCreate: (req, res, next) => {
    let data = JSON.stringify(req.body);
+
    api.create(endpoint, data).then(response => {
-     req.flash("success", "Coconuts planted successfully!");
+     req.flash("success", response.data.message);
+     console.log(response.data.message);
      res.redirect(`${urlPrefix}/${endpoint}`);
    }).catch(err => {
      req.flash("error", "Not enough water for the coconut: " + err);

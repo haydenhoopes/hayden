@@ -1,4 +1,5 @@
 const api = require("../api/api");
+const s3 = require("../api/s3");
 
 module.exports = {
     index: (req, res, next) => {
@@ -34,5 +35,22 @@ module.exports = {
 
     privacy: (req, res) => {
         res.render("user/privacy");
+    },
+
+    uploadS3: (req, res, next) => {
+        if (!req.files) {
+            res.json({"status": "error", "message": "Uploading files is not currently supported on /latest. Please use the manual uploader to upload the S3 object and then attach it to the data object."})
+        }
+        
+        let files = req.files;
+        let fileName = Object.keys(files)[0];
+        let data = files[fileName].data;
+        s3.uploadObject(fileName, data)
+            .then(response => {
+                res.json(response);
+            })
+            .catch(err => {
+                res.json(err);
+            });
     }
 }

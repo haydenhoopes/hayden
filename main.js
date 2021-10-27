@@ -7,6 +7,7 @@ const express = require("express"),
   connectFlash = require('connect-flash'),
   middleware = require("./custom_middleware/middleware"),
   cookieParser = require("cookie-parser"),
+  // awsServerlessExpressMiddleware = require("aws-serverless-express/middleware"),
   session = require("express-session");
 
 require("dotenv").config();
@@ -21,6 +22,8 @@ app.use(layouts);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
+
+// app.use(awsServerlessExpressMiddleware.eventContext());
 
 // Passport
   app.use(
@@ -45,8 +48,12 @@ app.use((req, res, next) => {
   if (process.env.url_prefix) {req.body = middleware.decode(req.body);};
   // Get and verify cookies
   middleware.getCookies(req, res, next);
+  middleware.loginRequired(req, res, next);
   res.locals.flashMessages = req.flash();
+  
   res.locals.urlPrefix = process.env.url_prefix;
+  res.locals.cssStyles = process.env.cssStyles;
+  res.locals.awsBucket = process.env.awsBucket;
   next();
 });
 
