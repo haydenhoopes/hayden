@@ -8,7 +8,8 @@ router.get("/s/:table", apiController.scan);
 router.get("/p/:table", apiController.pscan);
 
 router.get("/g/:table/:id", apiController.get);
-router.post("/u/:table", middleware.isAdmin, apiController.update);
+router.post("/u/:table", // middleware.isAdmin, 
+apiController.update);
 // router.get("/create", middleware.isAdmin, projectController.getCreate);
 // router.get("/:id", projectController.getsingle);
 // router.post("/create", middleware.isAdmin, projectController.postCreate);

@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>New Journal Entry</h1>
+    <form action="/pineapples/create" method="post">
+        <div class="row">
+            <div class="col-sm-4 form-group">
+                <input type="text" name="p_Title" id="Title" placeholder="Title" class="form-control">
+            </div>
+            <div class="col-sm-4 form-group">
+                <input type="text" name="p_Location" id="Location" value="Logan, UT" class="form-control">
+            </div>
+            <div class="col-sm-4 form-group">
+                <input type="date" name="p_Date" id="Date" style="float: right;" class="form-control">
+            </div>
+        </div>
+        <p>
+            <textarea name="p_Text" id="Text" cols="30" rows="10" style="width:100%" placeholder="Text goes here" class="form-control"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Submit" class="pineapple-button">
+        </p>
+    </form>
+</div>

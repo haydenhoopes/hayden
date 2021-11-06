@@ -1,5 +1,5 @@
 const axios = require("axios");
-const qs = require('qs');
+
 require("dotenv").config();
 const root = process.env.haydenApiEndpoint;
 if (!root) {console.log("No api endpoint specified.")};
@@ -9,8 +9,12 @@ module.exports = {
             return axios.get(`${root}/s/${endpoint}`);
         },
     pscan: (endpoint, per_page=undefined) => {
-        if (per_page) { per_page = "?per_page="+per_page}
-        return axios.get(`${root}/p/${endpoint}${per_page}`);
+        if (per_page) { 
+            per_page = "?per_page=" + per_page;
+            return axios.get(`${root}/p/${endpoint}${per_page}`);    
+        } else {
+            return axios.get(`${root}/p/${endpoint}`);
+        }
     },
 
     qscan: (endpoint) => {
@@ -25,6 +29,7 @@ module.exports = {
         return axios.post(`${root}/${endpoint}/post`, data, {
             headers: {
                 'Content-Type': 'application/json',
+                'x-api-key': process.env.token
             }
         });
     },
@@ -34,6 +39,7 @@ module.exports = {
         return axios.post(`${root}/${endpoint}/update`, data, {
             headers: {
                 'Content-Type': 'application/json',
+                'x-api-key': process.env.token
             }
         });
     },
@@ -42,6 +48,7 @@ module.exports = {
         return axios.post(`${root}/${endpoint}/delete`, data, {
             headers: {
                 'Content-Type': 'application/json',
+                'x-api-key': process.env.token
             }
         });
     },

@@ -19,7 +19,7 @@ const getUserParams = body => {
 
 const keys = [{"alg":"RS256","e":"AQAB","kid":"0/d8/viN93l66uaTNpbSjHKtGfXVHDyX2fjhysppD0o=","kty":"RSA","n":"zFff9bD9pRjsmLIcT8GRWFXVpcNKQTlbrJBdmYkrNEUiNNml0SO5SwlrPvMAGlAlIQwhDkCDfHNdXwybee9uf74c_M4ODRi6MfEZ7QAfzpr64A2P-doWcdYdVjEzOezsbGH2J8kdyoQMxBI96Fpa4G4hJljfVH-w7mFRCQAwSWoQZbNRrXkA3Kytuf9uossOy8P2DO-1s12K-GtYE_h-VqnnWM4a9HBOSJZOk8cV-CXD8kzOyNk30Cq3WzOpgfrBjmx8jPhWcW1HfDOJsp6ZGk-LgYBnuZGgZspRrVxOaAZlnqXRKRmgHsTpU1eZ1nGX6GxNg6TKzsjRb3HJfAK09Q","use":"sig"},{"alg":"RS256","e":"AQAB","kid":"4+iVQ3riiKO9xYMTp0eCX62OGnzC8HlwKfj1VRM5LFg=","kty":"RSA","n":"oMomyq-FP3X8CcAJ4A-gxa1pjKJSyjeea_UQXrLfLHrqlzniyVuTsOQinFyzrNkw00tyayrC1m00CrjgaIwNScBXYf19QYYyMYVsrW4Z360rre_lkQtUOSgIlBeEERKC5ySmKYP_kfOWHvSfFOuEXH_R3tHV6WF3r73MXWZyqjUOyhWxi5SE2J3psmiMIL7YHMF3apLjK8DpZH0i4bDtN0pVqS34UoedUnl5F7wsvBUIh2pMXFypL7ou5CTYRuMzoUtbRD0J0QG2KAduD3L1x64lwYkYL3g8WjLKIHW_GeGxoD71ksRNz2sNw5IXUeH0HI3SJNXzg5uEfd2l_XOKbQ","use":"sig"}]
 
-const loginUrl = `https://hayden-users.auth.us-east-1.amazoncognito.com/login?client_id=1fbcgp5ageie2cas98dsq65d9o&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=${process.env.loginRedirectUrl}`;
+const loginUrl = `https://hayden-users.auth.us-east-1.amazoncognito.com/login?client_id=1fbcgp5ageie2cas98dsq65d9o&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://www.haydenhoopes.com/users/loginWithToken`;
 
 module.exports = {
     getLogin: (req, res, next) => {
@@ -32,7 +32,7 @@ module.exports = {
         'grant_type': 'authorization_code',
         'client_id': '1fbcgp5ageie2cas98dsq65d9o',
         'code': code,
-        'redirect_uri': 'https://u1r7jcqgp2.execute-api.us-east-1.amazonaws.com/latest/users/loginWithToken' 
+        'redirect_uri': 'https://www.haydenhoopes.com/users/loginWithToken' 
       });
     
       var config = {

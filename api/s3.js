@@ -28,7 +28,7 @@ module.exports = {
                 Body: body
             }, (err, data) => {
                 if (err) {
-                    reject({"status": "error", "message": "There was an error uploading the file to S3"});
+                    reject({"status": "error", "message": err});
                 } else {
                     resolve({"status": "success", "message": "Upload successful"});
                 }

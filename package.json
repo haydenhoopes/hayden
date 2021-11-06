@@ -8,7 +8,9 @@
     "deploy": "claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1 --profile hayden",
     "update": "claudia update --profile hayden",
     "generate-proxy": "claudia generate-serverless-express-proxy --express-module main ",
-    "local": "nodemon app.js"
+    "local": "nodemon app.js",
+    "start": "node app.js",
+    "sitemap": "sitemap-generator https://www.haydenhoopes.com -f public/sitemap.xml -l"
   },
   "repository": {
     "type": "git",
@@ -52,6 +54,8 @@
   },
   "devDependencies": {
     "claudia": "^5.13.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sitemap": "^7.0.0",
+    "xmllint": "^0.1.1"
   }
 }

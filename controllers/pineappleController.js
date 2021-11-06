@@ -1,7 +1,7 @@
 const api = require("../api/api");
 let aws = require("aws-sdk");
 aws.config.update({region: 'us-east-1'});
-const endpoint = "coconuts";
+const endpoint = "pineapples";
 
 let months = {
   0: "January",
@@ -20,33 +20,16 @@ let months = {
 
 // ****  PROJECT SCHEMA  ****
 // _id
-// title
-// headline
-// shortDescription
-// languages
-// topics
-// images
-// videoLink
-// situation
-// task
-// action
-// result
-// liveLink
-// time
-// startDate
-// finishDate
-// type: job, workProject, personalProject
-// category: programming, data, research
-// display: true or false
+// Title
+// Date
+// Text
+// Files
 // Location
-// role
 
 module.exports = {
  all: (req, res, next) => {
     api.pscan(endpoint).then(data => {
-      res.locals.coconuts = data.data.Items;
-      console.log(data.data.Items);
-      
+      res.locals.pineapples = data.data.Items;
       res.render(`${endpoint}/all`);
     }).catch(err => {
       req.flash("error", err.message);
@@ -56,17 +39,16 @@ module.exports = {
 
  getsingle: async (req, res, next) => {
   let data = await api.get(endpoint, req.params.id);
-  res.locals.coconut = data.data[0];
+  res.locals.pineapple = data.data[0];
 
   // Date formatting, nothing special
-  let startDate=new Date(data.data[0].startDate), endDate=new Date(data.data[0].endDate);
-  res.locals.coconut.startDateString = `${months[startDate.getMonth()]} ${startDate.getDate()}, ${startDate.getFullYear()}`;
-  res.locals.coconut.endDateString = `${months[endDate.getMonth()]} ${endDate.getDate()}, ${endDate.getFullYear()}`;
+  let date=new Date(data.data[0].p_Date);
+  res.locals.pineapple.Date = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 
   // Image format, nothing special
   res.locals.i = req.query.i;
 
-  res.locals.coconut.files;
+  res.locals.pineapple.files;
   res.render(`${endpoint}/single`);
  },
  
@@ -88,18 +70,16 @@ module.exports = {
      console.log(response.data.message);
      res.redirect(`/${endpoint}`);
    }).catch(err => {
-     req.flash("error", "Not enough water for the coconut: " + err);
+     req.flash("error", "Not enough water for the pineapple: " + err);
      res.redirect(`/${endpoint}`);
    })
 },
 
  getUpdate: async (req, res, next) => {
    try {
-      let techs = await api.scan("technologies");
-      res.locals.technologies = techs.data;
       let id = req.params.id;
       let data = await api.get(endpoint, id);
-      res.locals.coconut = data.data[0];
+      res.locals.pineapple = data.data[0];
       res.render(`${endpoint}/update`);
    } catch (error) {
       req.flash("error", error.message);
@@ -110,7 +90,7 @@ module.exports = {
  postUpdate: (req, res, next) => {
   let id = req.body._id;
   api.update(endpoint, JSON.stringify(req.body)).then(() => { 
-    req.flash("success", "Coconut taken care of successfully!");
+    req.flash("success", "Pineapple taken care of successfully!");
     res.redirect(`/${endpoint}/${id}`);
   }).catch(err => {
     req.flash("error", err.message);

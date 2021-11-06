@@ -1,0 +1,1 @@
+console.log("It got to the public folder");

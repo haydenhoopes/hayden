@@ -57,6 +57,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/sitemap", (req, res) => { res.sendFile(__dirname + "/public/sitemap.xml")});
+
 app.use("/", router);
 
 module.exports = app; 

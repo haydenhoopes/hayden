@@ -1,4 +1,4 @@
-<div style="width:100%; height: 300px;overflow: hidden; background-image: url(https://picsum.photos/id/<%= i %>/1500/600);"></div>
+<div style="width:100%; height: 300px;overflow: hidden; background: url(https://picsum.photos/id/<%= i %>/1500/600); background-repeat: no-repeat; background-size: 100%;"></div>
 
 <% 
 var stringToColour = function(str) {
@@ -13,7 +13,7 @@ var stringToColour = function(str) {
     }
     return colour;
   }
-%>
+  %>
 
 <% if (coconut.hhidden == "false" || (currentUser && currentUser.isAdmin)) { %>
     <div class="container mt-5">
@@ -118,13 +118,6 @@ var stringToColour = function(str) {
             <img id="picture" src="" style="height: 90%;">
         </div>
 
-    <style>
-            div .card:hover {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        cursor: pointer;
-    }
-    </style>
-
     <script>
         document.querySelectorAll("div .card").forEach(card => {
             card.addEventListener("click", function(e) {
@@ -159,7 +152,7 @@ var stringToColour = function(str) {
               url: "<%= urlPrefix %>/uploadS3",
               data: data,
               cache: false,
-              contentType: "fileMime.mime",
+              contentType: false,
               processData: false,
               beforeSend: () => {
                 let progressBar = document.createElement("progress");
@@ -200,6 +193,7 @@ var stringToColour = function(str) {
         $.get({
             url: "<%= urlPrefix %>/api/g/coconuts/<%= coconut._id %>",
             success: (data) => {
+                if (!data.files) { data.files = []}
                 data.files.push(fileName);
                 $.post({
                     url: "<%= urlPrefix %>/api/u/coconuts",

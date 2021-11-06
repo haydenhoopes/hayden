@@ -1,0 +1,24 @@
+<div class="container mt-5" style="text-align: center;">
+    <h2 class="display-2 mb-5">pineapples</h2>
+
+    <a href="/pineapples/create" class="pineapple-button">New Journal Entry</a>
+
+    <table class="table">
+        <thead>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th></th>
+            <th></th>
+        </thead>
+    <% for (p of pineapples) { %>
+        <tr>
+            <td> <a href="/pineapples/<%= p._id %>"><%= p.p_Date %></a></td>
+            <td><%= p.p_Title %></td>
+            <td><%= p.p_Location %></td>
+            <td><a href="/pineapples/<%= p._id %>/edit">Edit</a></td>
+            <td><a href="/pineapples/<%= p._id %>/delete" onclick="confirm('Are you sure you want to delete this journal entry?\nIt will be lost forever.')">Delete</a></td>
+        </tr>
+    <% } %>
+    </table>
+</div>

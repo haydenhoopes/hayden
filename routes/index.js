@@ -1,22 +1,17 @@
 "use strict";
 
+const middleware = require("../custom_middleware/middleware");
+
 const router = require("express").Router(),
   errorRoutes = require("./errorRoutes"),
   homeRoutes = require("./homeRoutes"),
   userRoutes = require("./userRoutes"),
   projectRoutes = require("./projectRoutes"),
   apiRoutes = require("./apiRoutes"),
-  mangoRoutes = require('./mangoRoutes'),
+  pineappleRoutes = require("./pineappleRoutes");
+  // mangoRoutes = require('./mangoRoutes'),
 
-  mangoController = require("../controllers/mangoController");
-
-  
-  const isAdmin = (req, res, next) => {
-    if (!res.locals.currentUser || !res.locals.currentUser.isAdmin) {
-      res.render("error/notFound");
-    } else {
-      next();
-    }};
+  // mangoController = require("../controllers/mangoController");
 
 // router.get("/test", mangoController.test);
 // router.use("/mangoes", isAdmin, mangoRoutes);
@@ -25,6 +20,7 @@ const router = require("express").Router(),
 router.use("/coconuts", projectRoutes);
 router.use("/api", apiRoutes);
 router.use("/users", userRoutes);
+router.use("/pineapples", middleware.isAdmin, pineappleRoutes);
 router.use("/", homeRoutes);
 router.use(errorRoutes);
 

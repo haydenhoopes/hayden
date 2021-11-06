@@ -1,0 +1,10 @@
+<div class="container pineapple-container">
+    <div class="pineapple-text-container">
+        <h1><%= pineapple.p_Title %></h1>
+        <p>
+            <b><%= pineapple.Date %></b> | <%= pineapple.p_Location %></p>
+        <% for (paragraph of pineapple.p_Text.split("\n")) { %>
+            <p><%= paragraph %></p>
+        <% } %>
+    </div>
+</div>
