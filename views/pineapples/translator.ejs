@@ -1,0 +1,9 @@
+<div class="container my-5">
+    <form action="/pineapples/translate" method="post">
+    <h3>Translate: <select name="lang" id="lang" style="border: none;">
+        <option value="Long Patrol">Long Patrol</option>
+    </select></h3>
+        <textarea class="mt-4" name="encoded" id="encoded" class="form-control" style="width:100%; height:40vh; padding: 20px 20px"><% if (locals.returnText) { %><%= returnText %><% } %></textarea>
+        <input type="submit" value="Decode" class="btn mt-3 btn-primary"><input type="text" name="passphrase" id="passphrase" class="float-right" style="border:none" placeholder="Passphrase" autocomplete="off">
+    </form>
+</div>

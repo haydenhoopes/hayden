@@ -3,7 +3,10 @@ const s3 = require("../api/s3");
 
 module.exports = {
     index: (req, res, next) => {
-        res.render("index");
+        // api.scan("technologies").then((techs) => {
+        //     res.locals.technologies = techs.data;
+            res.render("index");
+        // });
     },
 
     aboutMe: (req, res) => {
@@ -39,7 +42,7 @@ module.exports = {
 
     uploadS3: (req, res, next) => {
         if (!req.files) {
-            res.json({"status": "error", "message": "Uploading files is not currently supported on /latest. Please use the manual uploader to upload the S3 object and then attach it to the data object."})
+            res.json({"status": "error", "message": "There was an error. Check homecontroller line 45"})
         }
         
         let files = req.files;
@@ -52,5 +55,17 @@ module.exports = {
             .catch(err => {
                 res.json(err);
             });
+    },
+
+    profile: async (req, res, next) => {
+        let username = res.locals.currentUser.username;
+        try {
+            let allProfiles = await api.scan("profiles");
+            console.log(allProfiles);
+            res.render("user/newProfile");
+        } catch (error) {
+            console.error(error);
+            res.send(error);
+        }
     }
 }

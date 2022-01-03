@@ -10,3 +10,7 @@ var stringToColour = function(str) {
     }
     return colour;
   }
+
+document.querySelectorAll(".colored-thing").forEach(t => {
+  t.style.backgroundColor = stringToColour(t.getAttribute("data-color"));
+})

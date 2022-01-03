@@ -1,0 +1,11 @@
+<div class="container mango-container">
+    <div class="mango-text-container">
+        <h1><%= mango.m_Where %></h1>
+        <p>
+            <b><%= mango.Date %></b> | <%= mango.m_Category %></p>
+            <p style="font-weight: 100;font-size: large;">$<%= mango.Amount %></p>
+        <% for (paragraph of mango.m_Text.split("\n")) { %>
+            <p><%= paragraph %></p>
+        <% } %>
+    </div>
+</div>

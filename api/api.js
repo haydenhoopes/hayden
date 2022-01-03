@@ -6,23 +6,58 @@ if (!root) {console.log("No api endpoint specified.")};
 
 module.exports = {
     scan: (endpoint) => {
-            return axios.get(`${root}/s/${endpoint}`);
+            return axios.get(`${root}/s/${endpoint}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': process.env.token
+                }
+            });
         },
     pscan: (endpoint, per_page=undefined) => {
         if (per_page) { 
             per_page = "?per_page=" + per_page;
-            return axios.get(`${root}/p/${endpoint}${per_page}`);    
+            return axios.get(`${root}/p/${endpoint}${per_page}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': process.env.token
+                }
+            });    
         } else {
-            return axios.get(`${root}/p/${endpoint}`);
+            return axios.get(`${root}/p/${endpoint}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': process.env.token
+                }
+            });
         }
     },
 
-    qscan: (endpoint) => {
-        return axios.get(`${root}/q/${endpoint}`);
+    qscan: (endpoint, query) => { // Just pass in the straight up req.query
+        let queryString = "?";
+        Object.keys(query).forEach(key => {
+            if (Array.isArray(query[key])) {
+                query[key].forEach(thing => {
+                    queryString += `${key}=${thing}&`;
+                })
+            } else {
+                queryString += `${key}=${query[key]}`;
+            }
+        })
+        return axios.get(`${root}/q/${endpoint}${queryString}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': process.env.token
+            }
+        });
     },
     
     get: (endpoint, id) => {
-        return axios.get(`${root}/${endpoint}/${id}`);
+        return axios.get(`${root}/${endpoint}/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': process.env.token
+            }
+        });
     },
 
     create: (endpoint, data) => {

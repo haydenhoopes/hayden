@@ -115,11 +115,9 @@ module.exports = {
         toDelete['_id'] = mtd;
       };
       api.delete("messages", toDelete).then((e) => {
-        console.log(e);
         req.flash("success", "Messages deleted!");
         res.redirect(middleware.makeUrl("/users/messages"));
       }).catch(err => {
-        console.log(err);
         req.flash("error", err);
         res.redirect(middleware.makeUrl("/users/messages"));
       });

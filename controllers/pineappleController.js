@@ -53,21 +53,16 @@ module.exports = {
  },
  
  getCreate: (req, res, next) => {
-   api.scan("technologies").then(techs => {
-     res.locals.technologies = techs.data;
-     res.render(`${endpoint}/create`);
-   }).catch(err => {
-     res.flash("error", err);
-     res.render(`${endpoint}/create`);
-   })
+  res.render(`${endpoint}/create`);
  },
 
  postCreate: (req, res, next) => {
+  if (req.body.encoded == "on") {
+    req.body.p_Text = encode(req.body.p_Text);
+ }
    let data = JSON.stringify(req.body);
-
    api.create(endpoint, data).then(response => {
      req.flash("success", response.data.message);
-     console.log(response.data.message);
      res.redirect(`/${endpoint}`);
    }).catch(err => {
      req.flash("error", "Not enough water for the pineapple: " + err);
@@ -89,6 +84,7 @@ module.exports = {
 
  postUpdate: (req, res, next) => {
   let id = req.body._id;
+
   api.update(endpoint, JSON.stringify(req.body)).then(() => { 
     req.flash("success", "Pineapple taken care of successfully!");
     res.redirect(`/${endpoint}/${id}`);
@@ -107,5 +103,83 @@ module.exports = {
     req.flash("error", err);
     res.redirect(`/${endpoint}`);
   })
+ },
+
+ translator: (req, res, next) => {
+  res.render(`${endpoint}/translator`);
+ },
+
+ decode: (req, res, next) => {
+   if (req.body.lang == "Long Patrol" && req.body.passphrase.toLowerCase() == "chickens rule!") {
+    res.locals.returnText = decode(req.body.encoded);
+    res.render(`${endpoint}/translator`);
+   } else {
+     res.locals.returnText = "Could not decode from that language\n" + req.body.encoded;
+    res.render(`${endpoint}/translator`);
+   }
  }
+}
+
+// Functions
+
+// aw is a space " "
+// di is a period "."
+// rt is a comma ","
+function encode(text) {
+  let newString = "";
+
+  for (letter of text) {
+    let value = letter.charCodeAt(0) - 65;
+    if (letter != " " && letter != "." && letter != "," && letter != "'") {
+      let newValue;
+      if (value % 2 == 1) {
+        newValue = value - 1;
+      } else {
+        newValue = value + 1;
+      }
+      newString += String.fromCharCode(65 + newValue);
+    } else {
+      switch (letter) {
+        case " ":
+          newString += "aw";
+          break;
+        case ",":
+          newString += "rt";
+          break;
+        case ".":
+          newString += "di";
+          break;
+        case "'":
+          newString += "ih";
+          break;
+      }
+    }
+  }
+
+  return newString
+}
+
+function decode(text) {
+  let newString = "";
+
+  text = text.split("aw").join(" ");
+  text = text.split("rt").join(",");
+  text = text.split("di").join(".");
+  text = text.split("ih").join("'");
+
+  for (letter of text) {
+    if (letter != " " && letter != "." && letter != "," && letter != "'") {
+      let value = letter.charCodeAt(0) - 65;
+      let newValue;
+      if (value % 2 == 1) {
+        newValue = value - 1;
+      } else {
+        newValue = value + 1;
+      }
+        newString += String.fromCharCode(65 + newValue);
+      } else {
+        newString += letter;
+      }
+    }
+    return newString;
 }

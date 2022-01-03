@@ -1,0 +1,4 @@
+.fa-primary {
+    fill: var(--fa-primary-color);
+    transition: var(--transition-speed);
+}

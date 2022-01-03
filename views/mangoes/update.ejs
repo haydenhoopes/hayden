@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Update Journal Entry</h1>
+    <form action="/pineapples/update" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="_id" value="<%= pineapple._id %>" id="_id">
+        <div class="row">
+            <div class="col-sm-4 form-group">
+                <input type="text" name="p_Title" id="Title" value="<%= pineapple.p_Title %>" class="form-control">
+            </div>
+            <div class="col-sm-4 form-group">
+                <input type="text" name="p_Location" id="Location" value="<%= pineapple.p_Location %>" class="form-control">
+            </div>
+            <div class="col-sm-4 form-group">
+                <input type="date" name="p_Date" id="Date" style="float: right;" class="form-control" value="<%= pineapple.p_Date %>">
+            </div>
+        </div>
+        <p>
+            <textarea name="p_Text" id="Text" cols="30" rows="10" style="width:100%" class="form-control"><%= pineapple.p_Text %></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Submit" class="pineapple-button">
+        </p>
+    </form>
+</div>

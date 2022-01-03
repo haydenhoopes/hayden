@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="quCsooCQ4QM-hgvFwKX7rqwvq_RhyL426brdRiqlTo8" />
+    <meta name="google-site-verification" content="eRcbOB_dkFDVK5hq3cHeu5WW2ADWNKSCrGZ5byh7-5s" />
     <title>Hayden Hoopes</title>
 
     <!-- Icons -->
@@ -14,59 +15,63 @@
     <!-- Web Manifest -->
     <link rel="manifest" href="/images/favicon/site.webmanifest">
 
-    <!-- Bootstrap stuff - Eventually move away from this -->
+    <!-- Bootstrap stuff - Eventually move away from this
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
+
     <!-- Client JavaScript  -->
-    <script src="/js/strToColor.js"></script>
+
   </head>
-  <body id="body">
-        <%- include ('partials/_navbar') %>
+  <%- include ('partials/_navbar') %>
+    <body id="body">
+      <main>
 
-      <!-- Flash Messages -->
-      <div class="flashes">
-        <% if (flashMessages) { %>
-        <% if (flashMessages.success) { %>
-          <div class="toast" style="position:fixed; top: 30px; left: 30px; z-index: 1021;opacity: .95;" id="flash">
-            <div class="toast-header">
-              Success!
+        <!-- Flash Messages -->
+        <div class="flashes">
+          <% if (flashMessages) { %>
+          <% if (flashMessages.success) { %>
+            <div class="toast" style="position:fixed; top: 30px; left: 30px; z-index: 1021;opacity: .95;" id="flash">
+              <div class="toast-header">
+                Success!
+              </div>
+              <div class="toast-body">
+                <%= flashMessages.success %>
+              </div>
             </div>
-            <div class="toast-body">
-              <%= flashMessages.success %>
+          <% } else if (flashMessages.error) { %>
+            <div class="toast text-danger" style="position:fixed; top: 30px; right: 30px; z-index: 1021;opacity: .95;" id="flash">
+              <div class="toast-header">
+                Error
+              </div>
+              <div class="toast-body">
+                <%= flashMessages.error %>
+              </div>
             </div>
-          </div>
-        <% } else if (flashMessages.error) { %>
-          <div class="toast text-danger" style="position:fixed; top: 30px; right: 30px; z-index: 1021;opacity: .95;" id="flash">
-            <div class="toast-header">
-              Error
-            </div>
-            <div class="toast-body">
-              <%= flashMessages.error %>
-            </div>
-          </div>
-        <% } %>
-        <% } %>
-      </div>
+          <% } %>
+          <% } %>
+        </div>
 
-      <div class="text-dark">
-        <%- body %>
-      </div>
-
-  </body>
+        <div class="text-dark">
+          <%- body %>
+        </div>
+        </main>
+      </body>
   <script>
-    $("#flash").delay(10000).fadeOut();
+    $("#flash").delay(20000).fadeOut();
   </script>
 
 
   <footer class="small text-dark">
     <%- include ('partials/_footer') %>
+    <script src="/js/strToColor.js"></script>
+    <script src="/js/todaysDate.js"></script>
   </footer>
 </html>

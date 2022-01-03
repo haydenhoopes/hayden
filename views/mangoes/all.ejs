@@ -1,0 +1,26 @@
+<div class="container mt-5" style="text-align: center;">
+    <h2 class="display-2 mb-5">mangoes</h2>
+
+    <a href="/mangoes/create" class="mango-button">new mango</a>
+
+    <div style="overflow-x:auto;">
+        <div class="div-table">
+            <div class="div-table-row">
+                    <div class="div-table-col">Date</div>
+                    <div class="div-table-col">Where</div>
+                    <div class="div-table-col">Debit</div>
+                    <div class="div-table-col">Credit</div>
+                </div>
+        <% for (m of mangoes) { %>
+                <div class="div-table-row">
+                    <div class="div-table-col"><%= m.m_Date %></div>
+                    <div class="div-table-col"><%= m.m_Where %></div>
+                    <div class="div-table-col"><%= m.m_Amount %></div>
+                    <div class="div-table-col"><%= m.m_Amount %></div>
+    
+                </div>
+        <% } %>
+        </div>
+    </div>
+    
+</div>

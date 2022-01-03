@@ -1,7 +1,6 @@
 const api = require("../api/api");
-let aws = require("aws-sdk");
-aws.config.update({region: 'us-east-1'});
-const endpoint = "coconuts";
+const youtube = require("../api/music");
+const endpoint = "bananas";
 
 let months = {
   0: "January",
@@ -18,75 +17,55 @@ let months = {
   11: "December",
 }
 
-// ****  PROJECT SCHEMA  ****
-// _id
-// title
-// headline
-// shortDescription
-// languages
-// topics
-// images
-// videoLink
-// situation
-// task
-// action
-// result
-// liveLink
-// time
-// startDate
-// finishDate
-// type: job, workProject, personalProject
-// category: programming, data, research
-// display: true or false
-// Location
-// role
+/****  BANANA SCHEMA  ****
+
+table([
+    {
+        _id: a33sefiejf,
+        artist: Rick Astley,
+        albums: [
+            title: Never Gonna Give You Up,
+            tracks: [
+                {
+                    name: Never Gonna Give You Up,
+                    url: http://asdf.youtub.com/asdf
+                }
+            ]
+        ],
+        genre: pop,
+        lastScanned: 2021-11-08
+    }
+])
+*/
 
 module.exports = {
  all: (req, res, next) => {
-   if (Object.keys(req.query).length > 0) {
-     api.qscan(endpoint, req.query).then(data => {
-       res.locals.coconuts = data.data.Items;
-       res.render(`${endpoint}/all`);
-     }).catch(err => {
-      req.flash("error", err.message);
-      res.send(err);
-    });  
-   } else {
-      api.pscan(endpoint).then(data => {
-      res.locals.coconuts = data.data.Items;
+    api.pscan(endpoint).then(data => {
+      res.locals.bananas = data.data.Items;
       res.render(`${endpoint}/all`);
     }).catch(err => {
       req.flash("error", err.message);
       res.send(err);
-    });  
-   }
-
+    });
  },
 
  getsingle: async (req, res, next) => {
   let data = await api.get(endpoint, req.params.id);
-  res.locals.coconut = data.data[0];
+  res.locals.banana = data.data[0];
 
   // Date formatting, nothing special
-  let startDate=new Date(data.data[0].startDate), endDate=new Date(data.data[0].endDate);
-  res.locals.coconut.startDateString = `${months[startDate.getMonth()]} ${startDate.getDate()}, ${startDate.getFullYear()}`;
-  res.locals.coconut.endDateString = `${months[endDate.getMonth()]} ${endDate.getDate()}, ${endDate.getFullYear()}`;
+  let date=new Date(data.data[0].p_Date);
+  res.locals.banana.Date = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 
   // Image format, nothing special
   res.locals.i = req.query.i;
 
-  res.locals.coconut.files;
+  res.locals.banana.files;
   res.render(`${endpoint}/single`);
  },
  
  getCreate: (req, res, next) => {
-   api.scan("technologies").then(techs => {
-     res.locals.technologies = techs.data;
      res.render(`${endpoint}/create`);
-   }).catch(err => {
-     res.flash("error", err);
-     res.render(`${endpoint}/create`);
-   })
  },
 
  postCreate: (req, res, next) => {
@@ -96,18 +75,16 @@ module.exports = {
      req.flash("success", response.data.message);
      res.redirect(`/${endpoint}`);
    }).catch(err => {
-     req.flash("error", "Not enough water for the coconut: " + err);
+     req.flash("error", "Not enough water for the banana: " + err);
      res.redirect(`/${endpoint}`);
    })
 },
 
  getUpdate: async (req, res, next) => {
    try {
-      let techs = await api.scan("technologies");
-      res.locals.technologies = techs.data;
       let id = req.params.id;
       let data = await api.get(endpoint, id);
-      res.locals.coconut = data.data[0];
+      res.locals.banana = data.data[0];
       res.render(`${endpoint}/update`);
    } catch (error) {
       req.flash("error", error.message);
@@ -118,7 +95,7 @@ module.exports = {
  postUpdate: (req, res, next) => {
   let id = req.body._id;
   api.update(endpoint, JSON.stringify(req.body)).then(() => { 
-    req.flash("success", "Coconut taken care of successfully!");
+    req.flash("success", "Banana taken care of successfully!");
     res.redirect(`/${endpoint}/${id}`);
   }).catch(err => {
     req.flash("error", err.message);
