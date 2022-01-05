@@ -21,8 +21,9 @@ var stringToColour = function(str) {
         <div style="text-align: center;">
             <% if (coconut.technologies) { %>
                 <% for (i=0; i<coconut.technologies.length; i++) { %>
-                    <% let colo = stringToColour(coconut.technologies[i]) %>
-                    <span class="text-light p-2 m-2 rounded" style="display:inline-block;background-color: <%= colo %>"><%= coconut.technologies[i].replace("_", " ") %></span>
+                    <a class="technology" href="/coconuts?technologies=<%= coconut.technologies[i]%>">
+                        <%= coconut.technologies[i].replace("_", " ") %>
+                    </a>
                 <% } %>
             <% } %>
         </div>

@@ -1,0 +1,14 @@
+.technology {
+    padding: .7rem;
+    color: var(--text-secondary);
+    border-radius: .25rem;
+    display: inline-block;
+    text-decoration: none;
+    margin: .5rem;
+}
+
+.technology:hover {
+    color: var(--text-secondary);
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

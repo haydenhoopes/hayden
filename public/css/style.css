@@ -2,13 +2,15 @@
 @import "scrollbar.css";
 @import "icons.css";
 @import "images.css";
+@import "technologies.css";
+@import "banner.css";
 
 :root {
   font-size: 16px;
-  font-family: 'Open Sans';
+  font-family: 'Helvetica';
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
-  --accent-color-1: #4285f4; 
+  --accent-color-1: #4285f4;
   --bg-primary: #23252e;
   --bg-secondary: #141418;
   --navbar-width: 5rem;
@@ -27,7 +29,7 @@
 .bg-lemon{background-color:#fbeeac!important}a.bg-lemon:focus,a.bg-lemon:hover,button.bg-lemon:focus,button.bg-lemon:hover{background-color:#fbeeac!important}
 .navbar-darkblue .navbar-brand{color:#1d3557}.navbar-darkblue .navbar-brand:focus,.navbar-darkblue .navbar-brand:hover{color:#1d3557}.navbar-darkblue .navbar-nav .nav-link{color:rgba(255,255,255,.5)}.navbar-darkblue .navbar-nav .nav-link:focus,.navbar-darkblue .navbar-nav .nav-link:hover{color:rgba(255,255,255,.75)}.navbar-darkblue .navbar-nav .nav-link.disabled{color:rgba(255,255,255,.25)}.navbar-darkblue .navbar-nav .active>.nav-link,.navbar-darkblue .navbar-nav .nav-link.active,.navbar-darkblue .navbar-nav .nav-link.show,.navbar-darkblue .navbar-nav .show>.nav-link{color:#1d3557}.navbar-darkblue .navbar-toggler{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.1)}.navbar-darkblue .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}.navbar-darkblue .navbar-text{color:rgba(255,255,255,.5)}.navbar-darkblue .navbar-text a{color:#1d3557}.navbar-darkblue .navbar-text a:focus,.navbar-darkblue .navbar-text a:hover{color:#1d3557}
 
-
+/* 
 #banner {
   object-fit: cover;
   min-height: 300px;
@@ -310,4 +312,4 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-}
+} */

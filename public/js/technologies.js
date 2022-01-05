@@ -11,6 +11,7 @@ var stringToColour = function(str) {
     return colour;
   }
 
-document.querySelectorAll(".colored-thing").forEach(t => {
-  t.style.backgroundColor = stringToColour(t.getAttribute("data-color"));
+document.querySelectorAll(".technology").forEach(t => {
+    var text = t.innerHTML;
+    t.style.backgroundColor = stringToColour(text);
 })

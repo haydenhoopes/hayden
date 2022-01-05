@@ -87,22 +87,25 @@ main {
     .navbar {
         bottom: 0;
         width: 100vw;
-        /* height: 5rem; */
+        height: 5rem;
         overflow-x: scroll;
+        overflow-y: hidden;
     }
     .navbar-nav {
         flex-direction: row;
+        justify-content: space-between;
     }
 
     .logo {
         display: none;
     }
+
     .nav-link {
         justify-content: center;
     }
 
     main {
-        margin: 0
+        margin: 0;
     }
 
     .navbar::-webkit-scrollbar {
@@ -116,6 +119,9 @@ main {
     .navbar::-webkit-scrollbar-thumb {
         background: var(--accent-color-1);
     }
+    .nav-item {
+        width: auto;
+    }
 }
 
 /* Large screens */
@@ -124,6 +130,11 @@ main {
         width: var(--navbar-width);
         height: 100vh;
         overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .nav-home-button {
+        display: none;
     }
 
     .navbar:hover {

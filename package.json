@@ -2,7 +2,7 @@
   "name": "hayden",
   "version": "1.0.0",
   "description": "An app for Hayden's website",
-  "main": "lambda.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1 --profile hayden",
@@ -32,7 +32,6 @@
     "aws-serverless-express": "^1.3.0",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
-    "busboy": "^0.3.1",
     "config": "^3.3.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
@@ -49,8 +48,7 @@
     "jwk-to-pem": "^2.0.5",
     "multer": "^1.4.3",
     "nanoid": "^3.1.23",
-    "passport": "^0.4.1",
-    "passport-local-mongoose": "^6.1.0"
+    "passport": "^0.4.1"
   },
   "devDependencies": {
     "claudia": "^5.13.1",
