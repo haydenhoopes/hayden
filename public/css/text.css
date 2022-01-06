@@ -1,0 +1,6 @@
+.index-section-title {
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--bg-secondary);
+    font-size: 1rem;
+}
