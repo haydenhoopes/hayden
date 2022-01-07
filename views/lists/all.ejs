@@ -1,0 +1,7 @@
+<h1>Lists</h1>
+<a href="/lists/create">Create New List</a>
+<ul class="ul-lists">
+    <% for (list of lists) { %>
+        <li><a href="/lists/<%= list._id %>"><%= list.l_title %></a></li>
+    <% } %>
+</ul>
