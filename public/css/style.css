@@ -5,6 +5,9 @@
 @import "technologies.css";
 @import "banner.css";
 @import "button.css";
+@import "text.css";
+@import "background.css";
+@import "form.css";
 
 :root {
   font-size: 16px;
@@ -24,9 +27,9 @@
   --transition-speed: 200ms;
 }
 
-body {
-  background-color: #393C4B;
-}
+/* body {
+  background-color: #141418;
+} */
 
 /* https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557 */
 .bg-darkblue{background-color:#28527a!important}a.bg-darkblue:focus,a.bg-darkblue:hover,button.bg-darkblue:focus,button.bg-darkblue:hover{background-color:#28527a!important}
