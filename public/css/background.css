@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,900');
+
+
+.container {
+	z-index: 1;
+	background: #151616;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+}
+
+.container::before {
+    position: absolute;
+    content: "";
+    background: rgba(#131414,0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.shape-blob {
+	filter: blur(50px);
+  -webkit-filter: blur(50px);
+	background: #E73B3B;
+	height: 400px;
+	width: 400px;
+	border-radius: 30% 50% 20% 40%;
+  	animation: 
+		transform 10s ease-in-out infinite both alternate,
+		movement_one 15s ease-in-out infinite both;
+	opacity:.7;
+	position: absolute;
+	left: 60%;
+	top: 50%;
+	z-index: -1;
+}
+.shape-blob.one{
+	background: #0087CE;
+	height: 500px;
+	width: 500px;
+	left: -200px;
+	top: -150px;
+	transform: rotate(-180deg);
+	animation: transform 10s ease-in-out infinite both alternate, movement_two 15s ease-in-out infinite both;
+	z-index: -1;
+}
+
+.shape-blob.two{
+	background: #8CDAE5;
+	height: 350px;
+	width: 350px;
+	left: 700px;
+	top: -150px;
+	transform: rotate(-180deg);
+	animation: transform 10s ease-in-out infinite both alternate, movement_two 15s ease-in-out infinite both;
+	z-index: -1;
+}
+
+@keyframes transform
+{
+    0%,
+  100% { border-radius: 33% 67% 70% 30% / 30% 30% 70% 70%; } 
+   20% { border-radius: 37% 63% 51% 49% / 37% 65% 35% 63%; } 
+   40% { border-radius: 36% 64% 64% 36% / 64% 48% 52% 36%; } 
+   60% { border-radius: 37% 63% 51% 49% / 30% 30% 70% 70%; } 
+   80% { border-radius: 40% 60% 42% 58% / 41% 51% 49% 59%; } 
+}
+
+
+@keyframes movement_one
+{
+    0%,
+  100% { transform: none; }
+   50% { transform: translate(50%, 20%) rotateY(10deg) scale(1.2); }
+}
+
+@keyframes movement_two
+{
+    0%,
+  500% { transform: none; }
+   50% { transform: translate(50%, 20%) rotate(-200deg) scale(1.2);}
+}
+
+h1 {
+	font-family: 'Playfair Display', serif;
+	font-size: 5em;
+	letter-spacing: 2px;
+	font-weight: 900;
+	color: #000;
+	line-height: 1.1em;
+	position: relative;
+	z-index: 14;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+	.container {
+		height: calc(100vh-3rem);
+	}
+}
+
+/* Large screens */
+@media only screen and (min-width: 600px) {
+	.container {
+		/* height: 40vh; */
+	}
+}

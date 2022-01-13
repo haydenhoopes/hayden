@@ -87,7 +87,7 @@ main {
     .navbar {
         bottom: 0;
         width: 100vw;
-        height: 5rem;
+        height: var(--navbar-width);
         overflow-x: scroll;
         overflow-y: hidden;
     }

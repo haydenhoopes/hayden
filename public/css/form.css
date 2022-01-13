@@ -1,0 +1,21 @@
+#disabled-item {
+    background-color: rgb(142, 149, 160);
+}
+
+form {
+    margin: 3rem;
+}
+
+/* List forms */
+
+form[name='list-form'] input[name='l_Item'] {
+    display: block;
+    width: calc(100% - 1rem);
+    margin: auto;
+    margin-top: 1.5rem;
+    height: 1.5rem;
+}
+
+form[name='list-form'] span {
+    float: right;
+}

@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "claudia": "^5.13.1",
+    "node-sass": "^7.0.1",
     "nodemon": "^2.0.7",
     "sitemap": "^7.0.0",
     "xmllint": "^0.1.1"

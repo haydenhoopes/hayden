@@ -1,7 +1,7 @@
 .button {
     padding: 1rem;
     background-color: var(--button-color-primary);
-    padding: .7rem;
+    padding: 0.7rem;
     color: var(--text-secondary);
     border-radius: .25rem;
     display: inline-block;
@@ -24,4 +24,9 @@
 
 .edit {
     background-color: var(--button-color-edit);
+}
+
+input[type="submit"] {
+    border: none;
+    font-size: 1rem;
 }
