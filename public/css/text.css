@@ -1,6 +1,31 @@
-.index-section-title {
-    text-align: center;
-    text-transform: capitalize;
-    color: var(--bg-secondary);
-    font-size: 1rem;
+.index-content {
+	text-align: center;
+}
+
+h1 {
+	display: inline-block;
+	margin:auto;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+	text-align: center;
+	padding: 1rem 2rem;
+	color: var(--bg-secondary);
+	text-shadow: var(--shadow-1);
+	font-size: 3rem;
+	font-weight: 200;
+	font-family: 'Source Sans Pro Light';
+	letter-spacing: .2rem;
+	border-bottom: 0.5rem solid;
+	border-left: 0rem solid;
+	border-right: 0rem solid;
+	border-top: 0rem solid;
+	border-image: linear-gradient(to right, var(--accent-color-2), var(--accent-color-1), var(--accent-color-3)) 1;
+	transition: border-left 100ms ease, border-right 100ms ease, border-top 100ms linear, margin-top 100ms linear;
+}
+
+h1:hover {
+	border-left: 0.5rem solid;
+	border-right: 0.5rem solid;
+	border-top: 0.5rem solid;
+	margin-top: 2.5rem;
 }
