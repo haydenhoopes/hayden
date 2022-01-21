@@ -1,4 +1,4 @@
-.index-content {
+.text-center {
 	text-align: center;
 }
 
@@ -22,6 +22,8 @@ h1 {
 	border-image: linear-gradient(to right, var(--accent-color-2), var(--accent-color-1), var(--accent-color-3)) 1;
 	transition: border-left 100ms ease, border-right 100ms ease, border-top 100ms linear, margin-top 100ms linear;
 }
+
+
 
 h1:hover {
 	border-left: 0.5rem solid;

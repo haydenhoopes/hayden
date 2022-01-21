@@ -2,8 +2,11 @@
 <form action="/lists/create" method="post" name="list-form">
     <input type="date" name="l_LastUpdated" style="display: none;">
     <input type="text" name="l_Title" id="title" placeholder="Title">
-    <input class="X_remove" type="text" name="l_Items" placeholder="Write item here"> <span> X</span>
-    <input type="text" id="disabled-item" placeholder="Write item here">
+    <div>
+        <div class="input-with-button">
+            <input class="X_removable" type="text" name="l_Items" placeholder="Write item here">
+        </div>
+    </div>
     <input class="button add" type="submit" value="Save List">
 </form>
 
