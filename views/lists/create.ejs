@@ -1,7 +1,9 @@
-<h1>New List</h1>
+<div class="text-center">
+    <h1>New List</h1>
+</div>
 <form action="/lists/create" method="post" name="list-form">
-    <input type="date" name="l_LastUpdated" style="display: none;">
-    <input type="text" name="l_Title" id="title" placeholder="Title">
+    <input type="date" name="l_LastUpdated" class="hidden">
+    <input type="text" name="l_Title" id="title" placeholder="List Title" required>
     <div>
         <div class="input-with-button">
             <input class="X_removable" type="text" name="l_Items" placeholder="Write item here">

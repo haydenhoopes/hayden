@@ -20,15 +20,29 @@ form[name='list-form'] span {
     float: right;
 }
 
-input, .input-button {
+input:not([type='submit']) {
     height: 2rem;
+}
+
+input, .input-with-button {
+    border-radius: 0.25rem;
+}
+
+input:not(.X_removable):not([type='submit']), .input-with-button {
+    border-radius: 0.25rem;
+    border: 1px solid var(--bg-primary);
+    margin-bottom: 0.5rem;
+    padding: 0rem 0.0rem 0rem 0.5rem;
+}
+
+input:not(.X_removable):not([type='submit']):focus, .input-with-button:focus-within {
+    box-shadow: var(--shadow-1);
 }
 
 .input-with-button {
     display: flex;
     flex-direction: row;
-    border: 1px solid grey;
-    padding: 2px;
+    border-radius: 0.25rem;
 }
 
 .input-with-button input {
@@ -43,6 +57,7 @@ input, .input-button {
 .input-with-button button {
     border: none;
     background: transparent;
+    width: 2rem;
     color: var(--accent-color-3);
 }
 
@@ -50,4 +65,5 @@ input, .input-button {
     background: var(--accent-color-3);
     color: var(--text-secondary);
     cursor: pointer;
+    border-radius: 0rem 0.25rem 0.25rem 0rem;
 }

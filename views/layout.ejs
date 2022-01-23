@@ -24,44 +24,31 @@
   <%- include ('partials/_navbar') %>
     <body id="body">
       <main>
-        <!-- Flash Messages -->
-        <div class="flashes">
-          <% if (flashMessages) { %>
-          <% if (flashMessages.success) { %>
-            <div class="toast" style="position:fixed; top: 30px; left: 30px; z-index: 1021;opacity: .95;" id="flash">
-              <div class="toast-header">
-                Success!
-              </div>
-              <div class="toast-body">
-                <%= flashMessages.success %>
-              </div>
-            </div>
-          <% } else if (flashMessages.error) { %>
-            <div class="toast text-danger" style="position:fixed; top: 30px; right: 30px; z-index: 1021;opacity: .95;" id="flash">
-              <div class="toast-header">
-                Error
-              </div>
-              <div class="toast-body">
-                <%= flashMessages.error %>
-              </div>
-            </div>
-          <% } %>
-          <% } %>
-        </div>
 
-        <div class="text-dark">
+        <% if (flashMessages) { %>
+          <!-- Flash Messages -->
+            <% if (flashMessages.success) { %>
+              <div class="flashes">
+                  <span>Success: <%= flashMessages.success %></span>
+                </div>
+            <% } else if (flashMessages.error) { %>
+              <div class="flashes">
+                  <span>Error: <%= flashMessages.error %></span>
+                </div>
+            <% } %>
+        <% } %>
+
+        <div class="body-container">
           <%- body %>
         </div>
         </main>
       </body>
-  <script>
-    // $("#flash").delay(20000).fadeOut();
-  </script>
 
 
   <footer class="small text-dark">
     <%- include ('partials/_footer') %>
     <script src="/js/todaysDate.js"></script>
     <script src="/js/technologies.js"></script>
+    <script src="/js/flash.js"></script>
   </footer>
 </html>

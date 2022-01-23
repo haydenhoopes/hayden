@@ -1,5 +1,3 @@
-// document.getElementById("disabled-item").addEventListener("input", addItem, { once: true });
-
 function addXElement() {
     // Adds an X button to inputs in divs with the input-with-button class
     document.querySelectorAll(".input-with-button").forEach(div => {
@@ -25,7 +23,9 @@ function removeItemXEventListener() {
     // Adds an event listener to each X button that removes its parent node and everything inside
     document.querySelectorAll(".input-with-button button").forEach(button => {
         button.addEventListener("click", function(e) {
-            this.parentElement.remove();
+            if (document.querySelectorAll(".input-with-button").length > 1) {
+                this.parentElement.remove();
+            }
         })
     })
 }

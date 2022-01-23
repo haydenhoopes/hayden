@@ -50,7 +50,9 @@ module.exports = {
  },
 
  postCreate: (req, res, next) => {
-   let data = JSON.stringify(req.body);
+   req.body.l_Items = removeEmptyValuesFromRequestBody(req.body.l_Items);
+   let data = JSON.stringify(req.body);//.filter((item) => item.length > 0));
+   console.log(data);
    api.create(endpoint, data).then(response => {
      req.flash("success", response.data.message);
      res.redirect(`/${endpoint}`);
@@ -95,4 +97,16 @@ module.exports = {
   })
  },
 
+}
+
+
+// Functions
+function removeEmptyValuesFromRequestBody(body) {
+  let newArray = [];
+  for (i of body) {
+    if (i.length > 0) {
+      newArray.push(i);
+    }
+  }
+  return newArray;
 }

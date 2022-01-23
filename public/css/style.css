@@ -8,6 +8,9 @@
 @import "text.css";
 @import "background.css";
 @import "form.css";
+@import "flash.css";
+@import "lists.css";
+@import "links.css";
 
 :root {
   font-size: 16px;
@@ -28,11 +31,12 @@
   --button-color-edit: #85F442;
   --transition-speed: 200ms;
   --shadow-1: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  --border-radius: 0.25rem;
 }
 
-/* body {
-  background-color: #141418;
-} */
+.body-container {
+  
+}
 
 /* https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557 */
 .bg-darkblue{background-color:#28527a!important}a.bg-darkblue:focus,a.bg-darkblue:hover,button.bg-darkblue:focus,button.bg-darkblue:hover{background-color:#28527a!important}

@@ -15,3 +15,8 @@ document.querySelectorAll(".technology").forEach(t => {
     var text = t.innerHTML;
     t.style.backgroundColor = stringToColour(text);
 })
+
+document.querySelectorAll(".ul-list a").forEach(t => {
+  var text = t.querySelector("div:last-child").innerHTML;
+  t.querySelector("div:first-child").style.backgroundColor = stringToColour(text);
+})

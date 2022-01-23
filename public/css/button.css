@@ -1,12 +1,11 @@
 .button {
-    padding: 1rem;
+    padding: 0.8rem;
     background-color: var(--button-color-primary);
-    padding: 0.7rem;
     color: var(--text-secondary);
     border-radius: .25rem;
     display: inline-block;
     text-decoration: none;
-    margin: .5rem;
+    border: none;
 }
 .button:hover {
     color: var(--text-secondary);
@@ -26,7 +25,18 @@
     background-color: var(--button-color-edit);
 }
 
+.secondary {
+    background-color: white;
+    color: var(--bg-primary);
+}
+
+.secondary:hover {
+    color: var(--bg-secondary);
+}
+
+
 input[type="submit"] {
     border: none;
     font-size: 1rem;
 }
+
