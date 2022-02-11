@@ -11,6 +11,8 @@
 @import "flash.css";
 @import "lists.css";
 @import "links.css";
+@import "projects.css";
+@import "layout.css";
 
 :root {
   font-size: 16px;
@@ -32,10 +34,11 @@
   --transition-speed: 200ms;
   --shadow-1: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   --border-radius: 0.25rem;
+  --size-breakpoint-sm: 800px;
 }
 
-.body-container {
-  
+* {
+  box-sizing: border-box;
 }
 
 /* https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557 */
@@ -109,12 +112,6 @@ h1,h2,h3,h4,h5,h6 {
   color: rgb(172, 175, 179);
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   margin-top: 16px;
-}
-
-/* Card effects */
-div .card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  cursor: pointer;
 }
 
 /* Link text  */

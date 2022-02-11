@@ -1,0 +1,14 @@
+.project {
+    border: 1px solid var(--text-secondary);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    margin: 1rem;
+}
+
+.project:hover {
+    box-shadow: var(--shadow-1);
+}
+
+.project .project-text {
+    padding: 1rem;
+}
