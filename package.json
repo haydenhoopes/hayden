@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1 --profile hayden",
+    "deploy": "git add . && git commit -m \"deployed new changes via the command line\" && git push",
     "update": "claudia update --profile hayden",
     "generate-proxy": "claudia generate-serverless-express-proxy --express-module main ",
     "local": "nodemon app.js",
@@ -46,15 +46,13 @@
     "http-status-codes": "^2.1.4",
     "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.5",
-    "multer": "^1.4.3",
     "nanoid": "^3.1.23",
-    "passport": "^0.4.1"
+    "passport": "^0.4.1",
+    "sitemap-generator": "^7.6.2"
   },
   "devDependencies": {
     "claudia": "^5.13.1",
-    "node-sass": "^7.0.1",
     "nodemon": "^2.0.7",
-    "sitemap": "^7.0.0",
     "xmllint": "^0.1.1"
   }
 }
