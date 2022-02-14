@@ -24,5 +24,4 @@ jobs:
         environment_name: hayden
         version_label: hayden-version-1.0-24
         region: us-east-1
-        deployment_package: deploy.zip
         existing_bucket_name: hayden-deploys
