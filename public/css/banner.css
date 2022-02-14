@@ -8,10 +8,6 @@
     overflow-x: hidden;
 }
 
-.banner {
-    /* text-align: center; */
-}
-
 .banner div {
     display: flex;
     flex-direction: column;
@@ -27,6 +23,8 @@
     font-size: 1.3rem;
     font-weight: 500;
     letter-spacing: 2px;
+    margin-top: 2rem;
+    line-height: 1.5rem;
 }
 
 .banner p {
@@ -34,6 +32,7 @@
     color: var(--text-secondary);
     text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     text-transform: uppercase;
+    margin: auto;
 }
 
 .banner p span {
@@ -69,6 +68,10 @@
     .banner-background {
         height: calc(100vh - 2rem);
     }
+
+    .banner-subtitle {
+        margin-top: 1rem;
+    }
 }
 
 /* Large screens */
@@ -89,6 +92,6 @@
         font-size: 1.5rem;
     }
     .banner-background {
-        height: 50vh;
+        height: 40vh;
     }
 }
