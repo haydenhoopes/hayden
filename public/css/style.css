@@ -14,8 +14,23 @@
 @import "projects.css";
 @import "layout.css";
 
+@import "index.css";
+
+@media only screen and (max-width: 800px) {
+  /* For tablets: */
+  :root {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  /* For desktop: */
+  :root {
+    font-size: 12px;
+  }
+}
+
 :root {
-  font-size: 16px;
   font-family: 'Helvetica';
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
@@ -326,4 +341,4 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-} */
+}
