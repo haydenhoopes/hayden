@@ -4,10 +4,6 @@
     display: flex;
 }
 
-.row {
-  display: flex;
-  align-items: stretch;
-}
 
 [class*="col-"] {
     float: left;
@@ -43,12 +39,22 @@
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
+
+    .row {
+  display: flex;
+  align-items: stretch;
+}
+
+.box {
+  margin: 1rem;
+}
   }
 
   .box {
     border: 1px solid var(--text-secondary);
     border-radius: var(--border-radius);
-    margin: 1rem;
+    margin-bottom: 1rem;
+
   }
 
   .box-header {

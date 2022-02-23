@@ -24,18 +24,18 @@ input:not([type='submit']) {
     height: 2rem;
 }
 
-input, .input-with-button {
-    border-radius: 0.25rem;
+textarea {
+    height: 7rem;
 }
 
-input:not(.X_removable):not([type='submit']), .input-with-button {
+input:not(.X_removable):not([type='submit']), .input-with-button, textarea {
     border-radius: 0.25rem;
     border: 1px solid var(--bg-primary);
     margin-bottom: 0.5rem;
     padding: 0rem 0.0rem 0rem 0.5rem;
 }
 
-input:not(.X_removable):not([type='submit']):focus, .input-with-button:focus-within {
+input:not(.X_removable):not([type='submit']):focus, .input-with-button:focus-within, textarea:focus {
     box-shadow: var(--shadow-1);
 }
 
