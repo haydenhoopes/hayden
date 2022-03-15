@@ -10,6 +10,7 @@ const router = require("express").Router(),
   apiRoutes = require("./apiRoutes"),
   mangoRoutes = require("./mangoRoutes"),
   listRoutes = require("./listRoutes"),
+  musicRoutes = require("./musicRoutes"),
   pineappleRoutes = require("./pineappleRoutes");
   // mangoRoutes = require('./mangoRoutes'),
 
@@ -25,6 +26,7 @@ router.use("/api", apiRoutes);
 router.use("/users", userRoutes);
 router.use("/pineapples", middleware.isAdmin, pineappleRoutes);
 router.use("/lists", listRoutes);
+router.use("/music", musicRoutes);
 router.use("/", homeRoutes);
 router.use(errorRoutes);
 
