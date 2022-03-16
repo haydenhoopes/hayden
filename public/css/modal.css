@@ -1,0 +1,53 @@
+.modal {
+    background-color: var(--text-secondary);
+    border-radius: var(--border-radius);
+    margin: auto;
+    width: 70%;
+    height: 20rem;
+    max-width: 75rem;
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 5rem;
+    transform: translate(-50%, 0);
+    box-shadow: var(--shadow-1);
+}
+
+.modal div:first-of-type {
+    margin: auto;
+    width: 80%;
+}
+
+.draggable h2:first-of-type {
+    cursor: move;
+}
+
+@media only screen and (max-width: 800px) {
+    /* For tablets: */
+
+}
+  
+  @media only screen and (min-width: 800px) {
+    /* For desktop: */
+
+  }
+
+  #song-modal-X {
+      position: fixed;
+      display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+      right: 0px;
+      top: 0px;
+      text-align: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--border-radius);
+      color: var(--text-primary);
+  }
+
+  #song-modal-X:hover {
+      cursor: pointer;
+      background-color: var(--text-primary);
+      color: var(--text-secondary);
+  }

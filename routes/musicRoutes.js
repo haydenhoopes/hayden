@@ -3,5 +3,6 @@ const router = require("express").Router(),
   musicController = require("../controllers/musicController");
 
 router.get("/", musicController.all);
+router.post("/checkYoutube", musicController.checkYoutube);
 
 module.exports = router;

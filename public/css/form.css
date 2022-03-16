@@ -6,6 +6,7 @@ form {
     margin: 3rem;
 }
 
+
 /* List forms */
 
 form[name='list-form'] input[name='l_Item'] {
@@ -22,6 +23,7 @@ form[name='list-form'] span {
 
 input:not([type='submit']) {
     height: 2rem;
+    border-radius: var(--border-radius);
 }
 
 textarea {
