@@ -25,9 +25,16 @@ module.exports = {
         let link = req.body.link;
         var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
         let match = link.match(regExp)[1];
+        let dlPath;
+        if (process.env.LoginRequired == "false") {
+          dlPath = process.env.tmpPath;
+        } else {
+          dlPath = path.join(__dirname, 'public', 'tmp');
+        }
+        console.log(dlPath);
         let YD = new YoutubeMp3Downloader({
           "ffmpegPath": process.env.ffmpegPath,
-          "outputPath": path.join(__dirname, '..', 'public', 'tmp'),
+          "outputPath": dlPath,
           "youtubeVideoQuality": "highestaudio",
           "queueParallelism": 2,
           "progressTimeout": 2000
@@ -35,36 +42,50 @@ module.exports = {
 
         YD.download(match);
 
-        YD.on("finished", (err, data) => {
-          // Upload the file to S3
-          fs.readFile(path.join(__dirname, '..', 'public', 'tmp', `${data.videoTitle}.mp3`), (err, file) => {
-            s3.uploadObject(`${data.videoTitle}.mp3`, file, 'hayden-music-bucket');
-          })
-
-          // Get video url in s3
-          let vidTitle = data.videoTitle.replace(/+/g, "and")
-          vidTitle = vidTitle.replace(/ /g, "+")
-          let downloadUrl = `https://hayden-music-bucket.s3.amazonaws.com/${vidTitle}.mp3`;
-
-          // Add the video information to the database.
-          api.create(endpoint, {
-            videoId: data.videoId,
-            url: data.youtubeUrl,
-            title: data.videoTitle,
-            thumbnail: data.thumbnail,
-            artist: data.artist,
-            downloadUrl: downloadUrl
-          }).then(result => {
-            return
-          }).catch(error => {
-            console.log(error);
-          });
-
-          res.json(data);
-        })
-
         YD.on("error", err => {
-          res.send(err);
+          res.json(err);
+        });
+
+        YD.on("finished", (err, data) => {
+          
+          try {
+            // upload to s3
+            let oPath;
+            if (process.env.LoginRequired == "false") {
+              oPath = path.join(__dirname, '..', 'public', 'tmp', `${data.videoTitle}.mp3`);
+            } else {
+              oPath = path.join(__dirname, 'public', 'tmp', `${data.videoTitle}.mp3`)
+            }
+            let file = fs.readFileSync(oPath);
+            s3.uploadObject(`${data.videoTitle}.mp3`, file, 'hayden-music-bucket');
+            console.log("File uploaded to s3");
+
+            fs.unlinkSync(path.join(dlPath, `${data.videoTitle}.mp3`));
+            console.log(path.join(__dirname, '..', 'public', 'tmp', `${data.videoTitle}.mp3`));
+            console.log("file removed from tmp");
+
+            // Get video url in s3
+            let vidTitle = data.videoTitle.split("+").join("and")
+            vidTitle = vidTitle.split(" ").join("+")
+            let downloadUrl = `https://hayden-music-bucket.s3.amazonaws.com/${vidTitle}.mp3`;
+
+            let song = {
+              videoId: data.videoId,
+              url: data.youtubeUrl,
+              title: data.videoTitle,
+              thumbnail: data.thumbnail,
+              artist: data.artist,
+              downloadUrl: downloadUrl
+            }
+            
+            // save details of song to the database
+            api.create(endpoint, song);
+            console.log("just about to send");
+            res.json(song);
+          } catch (error) {
+            console.log(error);
+            res.send(error);
+          }
         })
     },
 

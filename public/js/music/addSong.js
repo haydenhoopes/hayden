@@ -23,12 +23,11 @@ document.querySelector("#check-youtube-btn").addEventListener("click", function(
       method: "POST",
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, 
       body: JSON.stringify({"link": `${link}`})
-    }).then(data => {
-      return data.json();
-    }).then(data => {
-        console.log(data);
-        finishedLoadingYoutubeButton(data);
-        
+    }).then(readableStream => {
+      return readableStream.json();
+    }).then(song => {
+        console.log(song);
+        finishedLoadingYoutubeButton(song);
     });
   });
 
@@ -41,7 +40,7 @@ function loadingYoutubeButton() {
 }
 
 // Change color back to normal
-function finishedLoadingYoutubeButton(data) {
+function finishedLoadingYoutubeButton(song) {
     let btn = document.querySelector("#check-youtube-btn");
     btn.classList.remove("warning");
     btn.classList.add("add");
@@ -50,10 +49,8 @@ function finishedLoadingYoutubeButton(data) {
     btn.style.display = 'none';
     downloadBtn.style.display = 'block';
 
-    downloadBtn.innerHTML = `Download: ${data.videoTitle}`;
-    let videoTitle = data.videoTitle.replace(/+/g, "and");
-    videoTitle = videoTitle.replace(/ /g, "+");
-    downloadBtn.href = `https://hayden-music-bucket.s3.amazonaws.com/${videoTitle}.mp3`;
+    downloadBtn.innerHTML = `Download: ${song.title}`;
+    downloadBtn.href = `${song.downloadUrl}`;
 
     btn.innerHTML = "Finished checking. Click to check again.";
 }

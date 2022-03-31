@@ -2,7 +2,7 @@
 
 <button class="button add" id="add-song-btn">Add Song</button>
 
-<div class="less-width">
+<div class="less-width" style="overflow-x:auto;">
     <table>
             <% for (song of songs) { %>
                 <tr>
@@ -29,3 +29,6 @@
         <a type="submit" style="display:none" id="download-youtube-btn" class="button remove full-width">Download</a>
     </div>
 </div>
+
+
+<script src="/js/music/addSong.js"></script>
