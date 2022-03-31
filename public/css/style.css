@@ -15,6 +15,8 @@
 @import "layout.css";
 @import "footer.css";
 @import "modal.css";
+@import "music.css";
+@import "table.css";
 
 @import "index.css";
 
@@ -39,7 +41,7 @@
   --accent-color-1: #4285f4;
   --accent-color-2: #F4B142;
   --accent-color-3: #F44285;
-  --accent-color-4: #85F442;
+  --accent-color-4: #5ba230;
   --bg-primary: #23252e;
   --bg-secondary: #141418;
   --navbar-width: 5rem;
@@ -47,7 +49,8 @@
   --fa-secondary-color: #6aaad1;
   --button-color-primary: #2762c0;
   --button-color-remove: #F44285;
-  --button-color-edit: #85F442;
+  --button-color-edit: #5ba230;
+  --button-color-warning: #F4B142;
   --transition-speed: 200ms;
   --shadow-1: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   --border-radius: 0.25rem;

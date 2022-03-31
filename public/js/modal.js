@@ -43,17 +43,3 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-
-
-// Check Youtube AJAX event
-document.querySelector("#check-youtube-btn").addEventListener("click", function() {
-  let link = document.querySelector("#youtube-link").value;
-  
-  fetch("/music/checkYoutube", {
-    method: "POST",
-    headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, 
-    body: JSON.stringify({"link": `${link}`})
-  }).then(res => {
-    console.log("Request complete! response:", res);
-  });
-})

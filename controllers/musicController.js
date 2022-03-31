@@ -1,5 +1,9 @@
 const api = require("../api/api");
+const s3 = require("../api/s3");
+const fs = require("fs");
 const endpoint = "music";
+const YoutubeMp3Downloader = require("youtube-mp3-downloader");
+const path = require('path');
 
 module.exports = {
     all: (req, res) => {
@@ -8,6 +12,7 @@ module.exports = {
             res.render(`${endpoint}/all`);
         }).catch(err => {
             req.flash("error", err.message);
+            console.log(err);
             res.render("index");
         })
     },
@@ -16,9 +21,51 @@ module.exports = {
         let data = JSON.stringify(req.body);
     },
 
-    checkYoutube: (req, res, next) => {
+    checkYoutube: async (req, res, next) => {
         let link = req.body.link;
-        res.send("Success!")
+        var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+        let match = link.match(regExp)[1];
+        let YD = new YoutubeMp3Downloader({
+          "ffmpegPath": process.env.ffmpegPath,
+          "outputPath": path.join(__dirname, '..', 'public', 'tmp'),
+          "youtubeVideoQuality": "highestaudio",
+          "queueParallelism": 2,
+          "progressTimeout": 2000
+        });
+
+        YD.download(match);
+
+        YD.on("finished", (err, data) => {
+          // Upload the file to S3
+          fs.readFile(path.join(__dirname, '..', 'public', 'tmp', `${data.videoTitle}.mp3`), (err, file) => {
+            s3.uploadObject(`${data.videoTitle}.mp3`, file, 'hayden-music-bucket');
+          })
+
+          // Get video url in s3
+          let vidTitle = data.videoTitle.replaceAll("+", "and")
+          vidTitle = vidTitle.replaceAll(" ", "+")
+          let downloadUrl = `https://hayden-music-bucket.s3.amazonaws.com/${vidTitle}.mp3`;
+
+          // Add the video information to the database.
+          api.create(endpoint, {
+            videoId: data.videoId,
+            url: data.youtubeUrl,
+            title: data.videoTitle,
+            thumbnail: data.thumbnail,
+            artist: data.artist,
+            downloadUrl: downloadUrl
+          }).then(result => {
+            return
+          }).catch(error => {
+            console.log(error);
+          });
+
+          res.json(data);
+        })
+
+        YD.on("error", err => {
+          res.send(err);
+        })
     },
 
     getsingle: async (req, res, next) => {

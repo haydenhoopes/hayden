@@ -30,6 +30,10 @@
     background-color: var(--button-color-edit);
 }
 
+.warning {
+    background-color: var(--button-color-warning);
+}
+
 .secondary {
     background-color: white;
     color: var(--bg-primary);

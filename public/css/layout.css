@@ -75,3 +75,13 @@
     padding-right: 1.5rem;
     padding-bottom: 1.5rem;
   }
+
+.less-width {
+  width: 1000px;
+  margin: auto;
+}
+
+.more-width {
+  width: 1400px;
+  margin: auto;
+}

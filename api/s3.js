@@ -1,11 +1,12 @@
 let aws = require("aws-sdk");
 aws.config.update({region: 'us-east-1'});
+const fs = require("fs");
 
 let s3 = new aws.S3();
 
 function uploadObject(key, body, bucket) {
     s3.upload({
-        Bucket: bucket || "hayden-ste-bucket",
+        Bucket: bucket || "hayden-site-bucket",
         Key: key,
         Body: body
     }, (err, data) => {
@@ -42,5 +43,9 @@ module.exports = {
         }
         console.log("All objects uploaded");
         return
+    },
+
+    readFile: (path) => {
+
     }
 }

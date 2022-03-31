@@ -2,20 +2,19 @@
 
 <button class="button add" id="add-song-btn">Add Song</button>
 
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Link</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% for (song of songs) { %>
-            <td><%= song._title %></td>
-            <td><%= song._link %></td>
-            <% } %>
-    </tbody>
-</table>
+<div class="less-width">
+    <table>
+            <% for (song of songs) { %>
+                <tr>
+                    <td><img src="<%= song.thumbnail %>" ></td>
+                    <td><%= song.title %></td>
+                    <td><%= song.artist %></td>
+                    <td><a class="button edit full-width" href="/music/<%= song._id%>/edit">Edit</a></td>
+                    <td><a class="button add full-width" href="https://hayden-music-bucket.s3.amazonaws.com/<%= song.title.replaceAll(' ', '+') %>.mp3">Download</a></td>
+                </tr>
+                <% } %>
+    </table>
+</div>
 
 
 
@@ -25,7 +24,8 @@
     <div>
         <h2>Add a song</h2>
         <h3>Paste a YouTube link below</h3>
-        <input type="text" id="youtube-link" class="full-width" placeholder="Paste a YouTube link here">
-        <button type="submit" id="check-youtube-btn" class="button add full-width">Check YouTube</button>
+        <input type="text" name="link" id="youtube-link" class="full-width" placeholder="Paste a YouTube link here">
+        <span type="submit" id="check-youtube-btn" class="button add full-width">Check YouTube</span>
+        <a type="submit" style="display:none" id="download-youtube-btn" class="button remove full-width">Download</a>
     </div>
 </div>

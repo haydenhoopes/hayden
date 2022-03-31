@@ -48,7 +48,8 @@
     "jwk-to-pem": "^2.0.5",
     "nanoid": "^3.1.23",
     "passport": "^0.4.1",
-    "sitemap-generator": "^7.6.2"
+    "sitemap-generator": "^7.5.2",
+    "youtube-mp3-downloader": "^0.7.10"
   },
   "devDependencies": {
     "claudia": "^5.13.1",
