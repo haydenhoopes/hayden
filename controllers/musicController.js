@@ -29,7 +29,7 @@ module.exports = {
         if (process.env.LoginRequired == "false") {
           dlPath = process.env.tmpPath;
         } else {
-          dlPath = path.join(__dirname, '..', 'public', 'tmp');
+          dlPath = '/tmp';
         }
         console.log(dlPath);
         let YD = new YoutubeMp3Downloader({
@@ -50,12 +50,7 @@ module.exports = {
           
           try {
             // upload to s3
-            let oPath;
-            if (process.env.LoginRequired == "false") {
-              oPath = path.join(dlPath, `${data.videoTitle}.mp3`);
-            } else {
-              oPath = path.join(dlPath, `${data.videoTitle}.mp3`)
-            }
+            let oPath = path.join(dlPath, `${data.videoTitle}.mp3`)
             let file = fs.readFileSync(oPath);
             s3.uploadObject(`${data.videoTitle}.mp3`, file, 'hayden-music-bucket');
             console.log("File uploaded to s3");
@@ -78,10 +73,10 @@ module.exports = {
               downloadUrl: downloadUrl
             }
             
-            // save details of song to the database
-            api.create(endpoint, song);
-            console.log("just about to send");
-            res.json(song);
+              // save details of song to the database
+              api.create(endpoint, song);
+              console.log("just about to send");
+              res.json(song);
           } catch (error) {
             console.log(error);
             res.send(error);
