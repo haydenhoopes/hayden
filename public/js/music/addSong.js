@@ -51,8 +51,8 @@ function finishedLoadingYoutubeButton(data) {
     downloadBtn.style.display = 'block';
 
     downloadBtn.innerHTML = `Download: ${data.videoTitle}`;
-    let videoTitle = data.videoTitle.replaceAll("+", "and");
-    videoTitle = videoTitle.replaceAll(" ", "+");
+    let videoTitle = data.videoTitle.replace(/+/g, "and");
+    videoTitle = videoTitle.replace(/ /g, "+");
     downloadBtn.href = `https://hayden-music-bucket.s3.amazonaws.com/${videoTitle}.mp3`;
 
     btn.innerHTML = "Finished checking. Click to check again.";

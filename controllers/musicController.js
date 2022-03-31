@@ -42,8 +42,8 @@ module.exports = {
           })
 
           // Get video url in s3
-          let vidTitle = data.videoTitle.replaceAll("+", "and")
-          vidTitle = vidTitle.replaceAll(" ", "+")
+          let vidTitle = data.videoTitle.replace(/+/g, "and")
+          vidTitle = vidTitle.replace(/ /g, "+")
           let downloadUrl = `https://hayden-music-bucket.s3.amazonaws.com/${vidTitle}.mp3`;
 
           // Add the video information to the database.

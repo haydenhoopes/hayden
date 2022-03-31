@@ -10,7 +10,7 @@
                     <td><%= song.title %></td>
                     <td><%= song.artist %></td>
                     <td><a class="button edit full-width" href="/music/<%= song._id%>/edit">Edit</a></td>
-                    <td><a class="button add full-width" href="https://hayden-music-bucket.s3.amazonaws.com/<%= song.title.replaceAll(' ', '+') %>.mp3">Download</a></td>
+                    <td><a class="button add full-width" href="https://hayden-music-bucket.s3.amazonaws.com/<%= song.title.replace(/ /g, '+') %>.mp3">Download</a></td>
                 </tr>
                 <% } %>
     </table>
