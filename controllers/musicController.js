@@ -29,7 +29,7 @@ module.exports = {
         if (process.env.LoginRequired == "false") {
           dlPath = process.env.tmpPath;
         } else {
-          dlPath = path.join(__dirname, 'public', 'tmp');
+          dlPath = path.join(__dirname, '..', 'public', 'tmp');
         }
         console.log(dlPath);
         let YD = new YoutubeMp3Downloader({
@@ -52,9 +52,9 @@ module.exports = {
             // upload to s3
             let oPath;
             if (process.env.LoginRequired == "false") {
-              oPath = path.join(__dirname, '..', 'public', 'tmp', `${data.videoTitle}.mp3`);
+              oPath = path.join(dlPath, `${data.videoTitle}.mp3`);
             } else {
-              oPath = path.join(__dirname, 'public', 'tmp', `${data.videoTitle}.mp3`)
+              oPath = path.join(dlPath, `${data.videoTitle}.mp3`)
             }
             let file = fs.readFileSync(oPath);
             s3.uploadObject(`${data.videoTitle}.mp3`, file, 'hayden-music-bucket');
