@@ -42,7 +42,10 @@ let months = {
 // role
 
 module.exports = {
- all: (req, res, next) => {
+ all: async (req, res, next) => {
+    // Get technologies
+    res.locals.techs = await api.scan("technologies");
+
    if (Object.keys(req.query).length > 0) {
      api.qscan(endpoint, req.query).then(data => {
        res.locals.coconuts = data.data.Items;

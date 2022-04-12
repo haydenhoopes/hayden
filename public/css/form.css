@@ -6,6 +6,89 @@ form {
     margin: 3rem;
 }
 
+input:not([type='submit']), textarea, select {
+    width: 100%;
+}
+
+/* Regular inputs */
+label {
+    color: var(--text-primary);
+    position: relative;
+    top: .5rem;
+    left: .5rem;
+    background-color: white;
+    padding: .5rem;
+    padding-bottom: 0rem;
+}
+
+.label-active {
+    color: var(--accent-color-1);
+}
+
+input {
+    border: 2px solid var(--text-primary);
+    border-radius: var(--border-radius);
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+}
+
+input:focus {
+    border: 2px solid var(--accent-color-1); 
+    outline: none;
+}
+
+input:focus > label {
+    color: var(--accent-color-1);
+}
+
+/* Text boxes */
+textarea {
+    border: 2px solid var(--text-primary);
+    resize: vertical;
+    font-family: Helvetica;
+    border-radius: var(--border-radius);
+    padding-top: .5rem;
+    padding-left: .5;
+}
+
+textarea:focus {
+    outline: none;
+    border: 2px solid var(--accent-color-1);
+}
+
+/* Select box */
+select {
+    border: 2px solid var(--text-primary);
+    border-radius: var(--border-radius);
+    padding-top: .5rem;
+    padding-left: .5rem;
+}
+
+select:focus {
+    border: 2px solid var(--accent-color-1);
+    outline: none;
+}
+
+/* Radio button */
+input[type='radio'] {
+    margin-top: -1px;
+    vertical-align: middle;
+}
+
+
+/* Submit buttons */
+input[type="submit"] {
+    margin-top: 2rem;
+}
+
+/* Format box */
+.input-box {
+    border: 2px solid var(--text-primary);
+    border-radius: var(--border-radius);
+    padding-top: .5rem;
+    padding-left: .5rem;
+}
 
 /* List forms */
 
@@ -23,28 +106,22 @@ form[name='list-form'] span {
 
 input:not([type='submit']) {
     height: 2rem;
-    border-radius: var(--border-radius);
 }
 
 textarea {
     height: 7rem;
 }
 
-input:not(.X_removable):not([type='submit']), .input-with-button, textarea {
-    border-radius: 0.25rem;
-    border: 1px solid var(--bg-primary);
-    margin-bottom: 0.5rem;
-    padding: 0rem 0.0rem 0rem 0.5rem;
+.X_removable {
+    font-size: 1.5rem;
 }
 
-input:not(.X_removable):not([type='submit']):focus, .input-with-button:focus-within, textarea:focus {
-    box-shadow: var(--shadow-1);
-}
+
 
 .input-with-button {
     display: flex;
     flex-direction: row;
-    border-radius: 0.25rem;
+
 }
 
 .input-with-button input {

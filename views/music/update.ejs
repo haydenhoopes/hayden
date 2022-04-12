@@ -1,0 +1,40 @@
+<img src="<%= song.thumbnail %>" alt="<%= song.title %>" class="img-banner">
+<h2>Edit Song</h2>
+
+<form action="/music/update" method="post">
+    <input type="hidden" name="_id" value="<%= song._id %>" id="_id">
+    <input type="hidden" name="thumbnail" value="<%= song.thumbnail %>" id="thumbnail">
+    <input type="hidden" name="downloadUrl" value="<%= song.downloadUrl %>" id="downloadUrl">
+
+    <div class="less-width">
+        <div class="row">
+            <div class="col-6 col-s-12">
+                <input type="text" name="videoId" value="<%= song.videoId %>"<% if (currentUser && currentUser.isAdmin == false) { %>disabled<% } %>>
+            </div>
+            <div class="col-6 col-s-12">
+                    <input type="text" name="url" value="<%= song.url %>"<% if (currentUser && currentUser.isAdmin == false) { %>disabled<% } %>>
+            </div>
+        </div>
+    </div>
+    <div class="less-width">
+        <div class="row">
+            <div class="col-6 col-s-12">
+                <input type="text" name="title" value="<%= song.title %>">
+            </div>
+            <div class="col-6 col-s-12">
+                    <input type="text" name="artist" value="<%= song.artist %>">
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+song = {
+    videoId: data.videoId,
+    url: data.youtubeUrl,
+    title: data.videoTitle,
+    thumbnail: data.thumbnail,
+    artist: data.artist,
+    downloadUrl: downloadUrl
+  }

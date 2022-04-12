@@ -9,3 +9,15 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background: var(--accent-color-1);
 }
+
+select::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+select::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+select::-webkit-scrollbar-thumb {
+    background: var(--accent-color-1);
+}

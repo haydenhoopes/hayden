@@ -6,7 +6,7 @@ table {
     border-collapse:collapse;
 }
 
-tr:nth-of-type(2) {
+tr:nth-of-type(even) {
     background-color: var(--text-secondary);
 }
 

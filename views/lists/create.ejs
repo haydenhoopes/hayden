@@ -1,12 +1,12 @@
 <div class="text-center">
     <h1>New List</h1>
 </div>
-<form action="/lists/create" method="post" name="list-form">
+<form action="/lists/create" method="post" name="list-form" class="less-width">
     <input type="date" name="l_LastUpdated" class="hidden">
-    <input type="text" name="l_Title" id="title" placeholder="List Title" required>
+    <input type="text" name="l_Title" id="title" placeholder="List Title" required autocomplete="off">
     <div>
         <div class="input-with-button">
-            <input class="X_removable" type="text" name="l_Items" placeholder="Write item here">
+            <input class="X_removable" type="text" name="l_Items" placeholder="Write item here" autocomplete="off">
         </div>
     </div>
     <input class="button add" type="submit" value="Save List">

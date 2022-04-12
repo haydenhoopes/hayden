@@ -42,6 +42,7 @@ function addNewLineItem() {
                 newDiv.classList += "input-with-button";
                 let newInput = document.createElement("input");
                 newInput.classList += "X_removable";
+                newInput.autocomplete = "off";
                 newInput.type = "text";
                 newInput.name = "l_Items";
                 newDiv.append(newInput);

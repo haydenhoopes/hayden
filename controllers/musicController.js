@@ -17,10 +17,6 @@ module.exports = {
         })
     },
 
-    add: (req, res, next) => {
-        let data = JSON.stringify(req.body);
-    },
-
     checkYoutube: async (req, res, next) => {
         let link = req.body.link;
         var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
@@ -83,43 +79,12 @@ module.exports = {
           }
         })
     },
-
-    getsingle: async (req, res, next) => {
-        let data = await api.get(endpoint, req.params.id);
-        res.locals.banana = data.data[0];
-      
-        // Date formatting, nothing special
-        let date=new Date(data.data[0].p_Date);
-        res.locals.banana.Date = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-      
-        // Image format, nothing special
-        res.locals.i = req.query.i;
-      
-        res.locals.banana.files;
-        res.render(`${endpoint}/single`);
-       },
-       
-       getCreate: (req, res, next) => {
-           res.render(`${endpoint}/create`);
-       },
-      
-       postCreate: (req, res, next) => {
-         let data = JSON.stringify(req.body);
-      
-         api.create(endpoint, data).then(response => {
-           req.flash("success", response.data.message);
-           res.redirect(`/${endpoint}`);
-         }).catch(err => {
-           req.flash("error", "Not enough water for the banana: " + err);
-           res.redirect(`/${endpoint}`);
-         })
-      },
       
        getUpdate: async (req, res, next) => {
          try {
             let id = req.params.id;
             let data = await api.get(endpoint, id);
-            res.locals.banana = data.data[0];
+            res.locals.song = data.data[0];
             res.render(`${endpoint}/update`);
          } catch (error) {
             req.flash("error", error.message);
