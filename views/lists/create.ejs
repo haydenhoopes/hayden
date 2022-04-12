@@ -3,13 +3,18 @@
 </div>
 <form action="/lists/create" method="post" name="list-form" class="less-width">
     <input type="date" name="l_LastUpdated" class="hidden">
-    <input type="text" name="l_Title" id="title" placeholder="List Title" required autocomplete="off">
+    <div class="margin-sm">
+        <label for="l_Title">Title</label>
+        <input type="text" name="l_Title" id="title" required autocomplete="off">
+    </div>
     <div>
-        <div class="input-with-button">
-            <input class="X_removable" type="text" name="l_Items" placeholder="Write item here" autocomplete="off">
+        <div class="input-with-button margin-sm">
+            <input class="X_removable" type="text" name="l_Items" autocomplete="off">
         </div>
     </div>
-    <input class="button add" type="submit" value="Save List">
+    <div class="margin-sm">
+        <input class="button add" type="submit" value="Save List">
+    </div>
 </form>
 
 

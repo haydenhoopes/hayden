@@ -1,5 +1,6 @@
 const api = require("../api/api");
 let aws = require("aws-sdk");
+const s3 = require("../api/s3");
 aws.config.update({region: 'us-east-1'});
 const endpoint = "coconuts";
 
@@ -75,10 +76,6 @@ module.exports = {
   res.locals.coconut.startDateString = `${months[startDate.getMonth()]} ${startDate.getDate()}, ${startDate.getFullYear()}`;
   res.locals.coconut.endDateString = `${months[endDate.getMonth()]} ${endDate.getDate()}, ${endDate.getFullYear()}`;
 
-  // Image format, nothing special
-  res.locals.i = req.query.i;
-
-  res.locals.coconut.files;
   res.render(`${endpoint}/single`);
  },
  
@@ -93,14 +90,26 @@ module.exports = {
  },
 
  postCreate: (req, res, next) => {
-   let data = JSON.stringify(req.body);
+   let files = req.files;
+   let file = Object.keys(files)[0];
+   let fileName = files[file].name;
+   let fileData = files[file].data;
 
-   api.create(endpoint, data).then(response => {
-     req.flash("success", response.data.message);
-     res.redirect(`/${endpoint}`);
-   }).catch(err => {
-     req.flash("error", "Not enough water for the coconut: " + err);
-     res.redirect(`/${endpoint}`);
+   req.body.iimage = fileName;
+
+   let data = JSON.stringify(req.body);
+   
+   s3.uploadObject(fileName, fileData)
+   .then(response => {
+      console.log(response);
+      api.create(endpoint, data)
+          .then(response => {
+          req.flash("success", response.data.message);
+          res.redirect(`/${endpoint}`);
+        }).catch(err => {
+          req.flash("error", "Not enough water for the coconut: " + err);
+          res.redirect(`/${endpoint}`);
+      })
    })
 },
 

@@ -1,20 +1,20 @@
     <h1>New Project</h1>
-    <form action="<%= urlPrefix %>/coconuts/create" method="POST" class="less-width">
+    <form action="<%= urlPrefix %>/coconuts/create" method="POST" class="less-width" enctype="multipart/form-data">
         <div class="row">
             <div class="col-8">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-4 col-s-12">
 
                         <div class="margin-sm">
                             <label for="title">Title</label>
-                            <input type="text" name="title" id="title" class="form-control" required>
+                            <input type="text" name="title" id="title" required>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-8 col-s-12">
 
                         <div class="margin-sm">
                             <label for="headline">Headline</label>
-                            <input type="text" name="headline" id="headline" class="form-control" required>
+                            <input type="text" name="headline" id="headline" required>
                         </div>
 
                     </div>
@@ -22,54 +22,54 @@
 
                 <div class="margin-sm">
                     <label for="situation">Situation</label> 
-                    <textarea name="situation" id="situation" rows="2" class="form-control" required></textarea>
+                    <textarea name="situation" id="situation" rows="2" required></textarea>
                 </div>
                 
                 <div class="margin-sm">
                     <label for="task">Task</label> 
-                    <textarea name="task" id="task" rows="2" class="form-control" required></textarea>
+                    <textarea name="task" id="task" rows="2" required></textarea>
                 </div>
 
                 <div class="margin-sm">
                     <label for="aaction">Action</label> 
-                    <textarea name="aaction" id="aaction" rows="2" class="form-control" required></textarea>
+                    <textarea name="aaction" id="aaction" rows="2" required></textarea>
                 </div>
 
                 <div class="margin-sm">
                     <label for="rresult">Result</label> 
-                    <textarea name="rresult" id="rresult" rows="2" class="form-control" required></textarea>
+                    <textarea name="rresult" id="rresult" rows="2" required></textarea>
                 </div>
                 
                 <div class="margin-sm">
                     <label for="shortDescription">Short Description</label> 
-                    <textarea name="shortDescription" id="shortDescription" rows="2" class="form-control" required ></textarea>
+                    <textarea name="shortDescription" id="shortDescription" rows="2" required ></textarea>
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 col-s-12">
                         <div class="margin-sm">
                             <label for="llocation">Location</label>
-                            <input type="text" name="llocation" id="llocation" class="form-control">
+                            <input type="text" name="llocation" id="llocation">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 col-s-12">
                         <div class="margin-sm">
                             <label for="rrole">Role</label>
-                            <input type="text" name="rrole" id="rrole" class="form-control">
+                            <input type="text" name="rrole" id="rrole">
                         </div>
                     </div>
                 </div>
 
                 
             </div>
-            <div class="col-4">
+            <div class="col-4 col-s-12">
                 <div class="row">
-                    <div class="col-6 margin-sm">
+                    <div class="col-6 col-s-6 margin-sm">
                         <label for="startDate">Start Date</label>
                         <input type="date" name="startDate" id="startDate" required>
                     </div>
 
-                    <div class="col-6 margin-sm">
+                    <div class="col-6 col-s-6 margin-sm">
                         <label for="endDate">End Date</label>
                         <input type="date" name="endDate" id="endDate" required>
                     </div>
@@ -78,7 +78,7 @@
                 <div class="">
                     <div class="margin-sm">
                         <label for="technologies[]">Technologies</label>                      
-                        <select name="technologies[]" id="technologies" class="form-control" style="resize:vertical" multiple size="6">
+                        <select name="technologies[]" id="technologies" style="resize:vertical" multiple size="6">
                             <% for (t of technologies) { %>
                                 <option value="<%= t.name.replace(' ', '_') %>"><%= decodeURI(t.name) %></option>
                             <% } %> 
@@ -89,30 +89,30 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 col-s-12">
                         <div class="margin-sm">
                             <label for="ttime">Time (hours)</label>
-                            <input type="number" name="ttime" id="ttime" max="499" step=".5" min="0" class="form-control">
+                            <input type="number" name="ttime" id="ttime" max="499" step=".5" min="0">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 margin-sm">
+                    <div class="col-12 col-s-12 margin-sm">
                         <label for="">Hidden</label>
                         <div class="input-box">
-                            <div class="row margin-sm">
-                                <div class="col-10">
+                            <div class="row radio-button-label">
+                                <div class="col-10 col-s-10">
                                     <label for="hiddenTrue">Yes</label>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-2 col-s-2">
                                     <input type="radio" name="hhidden" id="hiddenTrue" value="true" class="form-check-input">
                                 </div>
                             </div>
-                            <div class="row margin-sm">
-                                <div class="col-10">
+                            <div class="row radio-button-label">
+                                <div class="col-10 col-s-10">
                                     <label for="hiddenTrue">No</label>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-2 col-s-2">
                                     <input type="radio" name="hhidden" id="hiddenTrue" value="false" class="form-check-input" checked>
                                 </div>
                             </div>
@@ -121,44 +121,50 @@
                 </div>
                 <div class=" margin-sm">
                     <label for="uurl">Live URL</label>
-                    <input type="text" name="uurl" id="url" class="form-control">
+                    <input type="text" name="uurl" id="url">
                 </div>
                 <div class="row margin-sm">
-                    <div class="col-12">
+                    <div class="col-12 col-s-12">
                         <div class="">
                             <label for="video">Video URL</label>
-                            <input type="text" name="video" id="video" class="form-control">
+                            <input type="text" name="video" id="video">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 margin-sm">
+                    <div class="col-6 col-s-12 margin-sm ">
                         <div class="">
                             <label for="ttype">Type of Project</label>
-                            <input type="text" name="ttype" id="ttype" placeholder="Work Project" class="form-control">
+                            <input type="text" name="ttype" id="ttype">
                         </div>
                     </div>
-                    <div class="col-6 margin-sm">
+                    <div class="col-6 col-s-12 margin-sm">
                         <div class="">
                             <label for="category">Project Classification</label>
-                            <input type="text" name="category" id="category" placeholder="Programming, Research, etc." class="form-control">
+                            <input type="text" name="category" id="category">
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-s-12 margin-sm">
+                        <label for="iimage">Background Image</label>
+                        <input type="file" name="iimage" id="iimage">
                     </div>
                 </div>
             </div>
         </div>
-        <input type="submit" value="Submit" class="btn btn-primary">
+        <input type="submit" value="Submit" class="button full-width add margin-sm">
     </form>
 
 
-    <form action="">
+    <!-- <form action="">
         <div class="row">
             <div class="col-12">
                     <label for="files">Files</label><span style="float: right;"><p class="btn btn btn-outline-primary" id="newFileButton">Add Another File</p></span>
                     <input type="file" name="files" id="files">         
             </div>
         </div>
-    </form>
+    </form> -->
 
 <!-- The Modal -->
 <div class="modal" id="myModal">
@@ -174,7 +180,7 @@
         <!-- Modal body -->
         <div class="modal-body">
             <label for="techName">Name</label>
-          <input type="text" name="techName" id="newTech" class="form-control">
+          <input type="text" name="techName" id="newTech">
         </div>
         <button id="newTechBtn" class="btn btn-primary">Submit</button>
       </div>

@@ -23,6 +23,26 @@
     .col-s-10 {width: 83.33%;}
     .col-s-11 {width: 91.66%;}
     .col-s-12 {width: 100%;}
+
+    .col-s-6:first-child {
+      padding-right: 0.5rem;
+    }
+
+    .col-s-6:last-child {
+      padding-left: 0.5rem;
+    }
+
+    .margin-sm {
+      margin-bottom: 1rem;
+    }
+    
+    .margin-md {
+      margin-bottom: 3rem;
+    }
+    
+    .margin-lg {
+      margin-bottom: 5rem;
+    }
   }
   
   @media only screen and (min-width: 800px) {
@@ -47,6 +67,21 @@
 
 .box {
   margin: 1rem;
+}
+
+.margin-sm {
+  margin: 1rem;
+  margin-bottom: 1rem;
+}
+
+.margin-md {
+  margin: 3rem;
+  margin-bottom: 3rem;
+}
+
+.margin-lg {
+  margin: 5rem;
+  margin-bottom: 5rem;
 }
   }
 
@@ -84,19 +119,4 @@
 .more-width {
   max-width: 1400px;
   margin: auto;
-}
-
-.margin-sm {
-  margin: 1rem;
-  margin-bottom: 1rem;
-}
-
-.margin-md {
-  margin: 3rem;
-  margin-bottom: 3rem;
-}
-
-.margin-lg {
-  margin: 5rem;
-  margin-bottom: 5rem;
 }

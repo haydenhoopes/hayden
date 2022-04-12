@@ -6,6 +6,11 @@
     flex: 1;
 }
 
+.project img {
+    max-height: 12rem;
+    object-fit: cover;
+}
+
 .project:hover {
     box-shadow: var(--shadow-1);
 }

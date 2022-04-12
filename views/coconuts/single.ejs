@@ -1,4 +1,4 @@
-<div style="width:100%; height: 300px;overflow: hidden; background: url(https://picsum.photos/id/<%= i %>/1500/600); background-repeat: no-repeat; background-size: 100%;"></div>
+<div style="width:100%; height: 300px;overflow: hidden; background: url(https://hayden-site-bucket.s3.amazonaws.com/<%= coconut.iimage %>); background-repeat: no-repeat; background-size: 100%;"></div>
 
 <% 
 var stringToColour = function(str) {
@@ -55,8 +55,8 @@ var stringToColour = function(str) {
 
                 <a class="btn btn-large btn-primary btn-block" target="_blank" href="<%= coconut.uurl %>">Go to project</a>
                 <% if (currentUser && currentUser.isAdmin) { %>
-                        <a class="btn btn-success btn-block" href="<%= urlPrefix %>/coconuts/<%= coconut._id %>/edit">Edit</a>    
-                        <a class="btn btn-danger btn-block" href="<%= urlPrefix %>/coconuts/<%= coconut._id %>/delete" onclick="return confirm('Are you sure you want to remove this coconut?')">Remove</a>
+                        <a class="btn btn-success btn-block" href="/coconuts/<%= coconut._id %>/edit">Edit</a>    
+                        <a class="btn btn-danger btn-block" href="/coconuts/<%= coconut._id %>/delete" onclick="return confirm('Are you sure you want to remove this coconut?')">Remove</a>
     
 
                     <label for="files" class="mt-3">Add File</label>
@@ -151,7 +151,7 @@ var stringToColour = function(str) {
           data.append(fileName, this['files'][0]);
           
           $.post({
-              url: "<%= urlPrefix %>/uploadS3",
+              url: "/uploadS3",
               data: data,
               cache: false,
               contentType: false,
@@ -193,12 +193,12 @@ var stringToColour = function(str) {
 
       function addFileToProject(fileName) {
         $.get({
-            url: "<%= urlPrefix %>/api/g/coconuts/<%= coconut._id %>",
+            url: "/api/g/coconuts/<%= coconut._id %>",
             success: (data) => {
                 if (!data.files) { data.files = []}
                 data.files.push(fileName);
                 $.post({
-                    url: "<%= urlPrefix %>/api/u/coconuts",
+                    url: "/api/u/coconuts",
                     data: data,
                     success: (response) => {
                         console.log(response.message);

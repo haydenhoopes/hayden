@@ -40,6 +40,7 @@ function addNewLineItem() {
             } else {
                 let newDiv = document.createElement("div");
                 newDiv.classList += "input-with-button";
+                newDiv.classList += " margin-sm";
                 let newInput = document.createElement("input");
                 newInput.classList += "X_removable";
                 newInput.autocomplete = "off";
