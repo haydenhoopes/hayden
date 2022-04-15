@@ -21,6 +21,10 @@ label {
     padding-bottom: 0rem;
 }
 
+.label-secondary {
+    color: var(--text-secondary)
+}
+
 .label-active {
     color: var(--accent-color-1);
 }

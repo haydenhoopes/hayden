@@ -1,48 +1,49 @@
   <div class="text-center">
     <h1>Projects</h1>
   </div>
-<!-- 
-  <% if (currentUser && currentUser.isAdmin) { %>
-    <a class="button secondary" href="<%= urlPrefix %>/coconuts/create">
-        New Project
-      </a>
-<% } %>
 
-        <div id="accordion">
-            <div>
-                <a class="card-link text-secondary" data-toggle="collapse" href="#collapseOne">
-                  Filters
-                </a>
-            </div>
+<div class="row more-width">
+  <div class="col-2 col-s-12 margin-sm">
+    <p class="label">Filters</p>
+    <div class="box box-secondary">
+        <span class="project-box-title">Category</span>
+        <a href="/coconuts?category=Programming" class="project-box-item"><span>Programming</span></a>
+        <a href="/coconuts?category=Research" class="project-box-item"><span>Research</span></a>
 
-            
-              <div id="collapseOne" class="collapse" data-parent="#accordion">
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h3>Language</h3>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" value="JavaScript">JavaScript
-                        </label>
-                      </div>
-                  </div>
-                </div>
-              </div>
-          </div> -->
+        <span class="project-box-title">Type</span>
+        <a href="/coconuts?ttype=Work" class="project-box-item"><span>Work</span></a>
+        <a href="/coconuts?ttype=Student" class="project-box-item"><span>School</span></a>
 
-    <div class="row more-width">
+        <span class="project-box-title">Role</span>
+        <a href="/coconuts?rrole=Student" class="project-box-item"><span>Student</span></a>
+
+        <span class="project-box-title">Technology</span>
+        <!-- Technology Filters -->
+        <% for (t of techs) { %>
+          <a href="/coconuts?technologies=<%= t %>" class="project-box-item"><span><%= t %></span></a>
+        <% } %>
+
+    </div>
+  </div>
+  
+  <div class="col-10 margin-sm">
+    <div class="row">
       <% let iteration = 1; %>
         <% for (c in coconuts) { %>
           <% if (coconuts[c].hhidden == "false" || (currentUser && currentUser.isAdmin)) { %>
-            <div class="col-3 col-s-12">
+            <div class="col-3 col-m-4 col-s-12 margin-sm">
               <div class="project">
                 <a href="/coconuts/<%= coconuts[c]._id %>" class="text-decoration-none">
-                <div class="card my-3" style="width:100%;height:100%;">
-                    <img class="card-img-top" src="<% if (coconuts[c].iimage == undefined) { %>https://picsum.photos/id/<%= Number(c)+9 %>/400/200 <% } else { %>https://hayden-site-bucket.s3.amazonaws.com/<%= coconuts[c].iimage %><% } %>" style="width:100%">
+                <div class="my-3" style="width:100%;height:100%;">
+                    <% if (coconuts[c].iimage != undefined) { %>
+                      <img class="card-img-top" src="https://hayden-site-bucket.s3.amazonaws.com/<%= coconuts[c].iimage %>">
+                    <% } else { %>
+                      <div class="project-background"><span style="display:none"><%= coconuts[c].title %></span></div>
+                    <% } %>
                     <div class="project-text">
                         <small class="text-secondary mb-3"><%= coconuts[c].endDate %></small class="text-secondary">
-                    <h4 class="card-title"><%= coconuts[c].title %></h4>
-                    <p class="card-text"><%= coconuts[c].shortDescription %></p>
+                    <h4><%= coconuts[c].title %></h4>
+                    <p><%= coconuts[c].shortDescription %></p>
                     </div>
                 </div>
                 </a>
@@ -53,3 +54,5 @@
                <% } %>
                <% } %>
     </div>
+  </div>
+</div>

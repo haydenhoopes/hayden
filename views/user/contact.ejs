@@ -1,15 +1,21 @@
-<div class="text-center">
+<div class="less-width">
     <h1>Contact</h1>
-</div>
     <p>If you'd like, go ahead and leave me a message here. If you would like to get in contact with me more quickly, feel free to send me an email, call me, or send me a message on <a href="https://www.linkedin.com/in/haydenhoopes/">LinkedIn</a>.</p>
     <form action="<%= urlPrefix %>/users/messages" method="POST">
         <div class="row">
-            <input class="col-4 col-s-12" type="text" name="title" id="title" placeholder="Title">
+            <div class="col-12 col-s-12 margin-sm">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+            </div>
         </div>
         <div class="row">
-            <textarea class="col-12 col-s-12" name="message" id="message" placeholder="Message"></textarea>
+            <div class="col-12 col-s-12 margin-sm">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" ></textarea>
+            </div>
         </div>
-        <div>
-            <input type="submit" value="Submit" class="button">
+        <div class="margin-sm">
+            <input type="submit" value="Submit" class="button full-width">
         </div>
     </form>
+</div>

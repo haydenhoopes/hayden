@@ -11,7 +11,7 @@ h1 {
 	padding: 1rem 2rem;
 	color: var(--bg-secondary);
 	text-shadow: var(--shadow-1);
-	font-size: 4rem;
+	font-size: 3.5rem;
 	font-weight: 200;
 	font-family: 'Source Sans Pro Light', 'Helvetica', sans-serif;
 	letter-spacing: .2rem;
@@ -39,8 +39,25 @@ h3 {
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 	text-align: center;
+	font-size: 1.5rem;
+	font-family: 'Source Sans Pro Light', 'Helvetica', sans-serif;
 }
 
 p {
 	font-size: 1.25rem;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	text-align: justify;
+}
+
+.label {
+	display: inline;
+	color: var(--text-primary);
+    position: relative;
+    top: .5rem;
+    left: .5rem;
+    background-color: white;
+    padding: .5rem;
+    padding-bottom: 0rem;
+	font-weight: 600;
+	font-size: 1rem;
 }

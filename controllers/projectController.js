@@ -45,7 +45,12 @@ let months = {
 module.exports = {
  all: async (req, res, next) => {
     // Get technologies
-    res.locals.techs = await api.scan("technologies");
+    let techs = await api.scan("technologies");
+    let techList = [];
+    techs.data.forEach(t => {
+      techList.push(t.name);
+    })
+    res.locals.techs = techList.sort();
 
    if (Object.keys(req.query).length > 0) {
      api.qscan(endpoint, req.query).then(data => {
