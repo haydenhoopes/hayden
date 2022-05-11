@@ -1,0 +1,27 @@
+<div class="text-center">
+    <h1>New List</h1>
+</div>
+<form action="/lists/update" method="post" name="list-form" class="less-width">
+    <input type="hidden" name="_id" value="<%= list._id %>" id="_id">
+    <input type="date" name="l_LastUpdated" class="hidden">
+    <div class="margin-sm">
+        <label for="l_Title">Title</label>
+        <input type="text" name="l_Title" value="<%= list.l_Title %>" id="title" required autocomplete="off">
+    </div>
+    <div>
+        <% for (i of list.l_Items) { %>
+        <div class="input-with-button margin-sm">
+            <input class="X_removable" type="text" name="l_Items" value="<%= i %>" autocomplete="off">
+        </div>
+        <% } %>
+        <div class="input-with-button margin-sm">
+            <input class="X_removable" type="text" name="l_Items" autocomplete="off">
+        </div>
+    </div>
+    <div class="margin-sm">
+        <input class="button add" type="submit" value="Save List">
+    </div>
+</form>
+
+
+<script src="/js/lists/addItem.js"></script>

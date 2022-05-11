@@ -76,8 +76,10 @@ module.exports = {
 
  postUpdate: (req, res, next) => {
   let id = req.body._id;
+  let newData = req.body;
+  newData.l_Items = newData.l_Items.filter(item => item.length > 0);
 
-  api.update(endpoint, JSON.stringify(req.body)).then(() => { 
+  api.update(endpoint, JSON.stringify(newData)).then(() => { 
     req.flash("success", "List saved successfully!");
     res.redirect(`/${endpoint}/${id}`);
   }).catch(err => {
