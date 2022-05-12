@@ -21,12 +21,12 @@ const router = require("express").Router(),
 // router.use("/subscribers", subscriberRoutes);
 // router.use("/courses", courseRoutes);
 router.use("/coconuts", projectRoutes);
-router.use("/mangoes", mangoRoutes);
+router.use("/mangoes", middleware.isAdmin, mangoRoutes);
 router.use("/api", apiRoutes);
-router.use("/users", userRoutes);
+router.use("/users", middleware.isAdmin, userRoutes);
 router.use("/pineapples", middleware.isAdmin, pineappleRoutes);
-router.use("/lists", listRoutes);
-router.use("/music", musicRoutes);
+router.use("/lists", middleware.isAdmin, listRoutes);
+router.use("/music", middleware.isAdmin, musicRoutes);
 router.use("/", homeRoutes);
 router.use(errorRoutes);
 
