@@ -23,7 +23,7 @@ const router = require("express").Router(),
 router.use("/coconuts", projectRoutes);
 router.use("/mangoes", middleware.isAdmin, mangoRoutes);
 router.use("/api", apiRoutes);
-router.use("/users", middleware.isAdmin, userRoutes);
+router.use("/users", userRoutes);
 router.use("/pineapples", middleware.isAdmin, pineappleRoutes);
 router.use("/lists", middleware.isAdmin, listRoutes);
 router.use("/music", middleware.isAdmin, musicRoutes);
