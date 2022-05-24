@@ -95,27 +95,39 @@ module.exports = {
  },
 
  postCreate: (req, res, next) => {
-   let files = req.files;
-   let file = Object.keys(files)[0];
-   let fileName = files[file].name;
-   let fileData = files[file].data;
+   if (req.files) {
+    let files = req.files;
+    let file = Object.keys(files)[0];
+    let fileName = files[file].name;
+    let fileData = files[file].data;
+ 
+    req.body.iimage = fileName;
 
-   req.body.iimage = fileName;
+    let data = JSON.stringify(req.body);
 
-   let data = JSON.stringify(req.body);
-   
-   s3.uploadObject(fileName, fileData)
-   .then(response => {
-      console.log(response);
-      api.create(endpoint, data)
-          .then(response => {
-          req.flash("success", response.data.message);
-          res.redirect(`/${endpoint}`);
-        }).catch(err => {
-          req.flash("error", "Not enough water for the coconut: " + err);
-          res.redirect(`/${endpoint}`);
-      })
-   })
+    s3.uploadObject(fileName, fileData)
+    .then(response => {
+       api.create(endpoint, data)
+           .then(response => {
+           req.flash("success", response.data.message);
+           res.redirect(`/${endpoint}`);
+         }).catch(err => {
+           req.flash("error", "Not enough water for the coconut: " + err);
+           res.redirect(`/${endpoint}`);
+       })
+    })
+   } else {
+    let data = JSON.stringify(req.body);
+    api.create(endpoint, data)
+    .then(response => {
+    req.flash("success", response.data.message);
+    res.redirect(`/${endpoint}`);
+  }).catch(err => {
+    req.flash("error", "Not enough water for the coconut: " + err);
+    res.redirect(`/${endpoint}`);
+})
+   }
+  
 },
 
  getUpdate: async (req, res, next) => {
@@ -125,6 +137,7 @@ module.exports = {
       let id = req.params.id;
       let data = await api.get(endpoint, id);
       res.locals.coconut = data.data[0];
+      console.log(res.locals.coconut);
       res.render(`${endpoint}/update`);
    } catch (error) {
       req.flash("error", error.message);
@@ -134,7 +147,7 @@ module.exports = {
 
  postUpdate: (req, res, next) => {
   let id = req.body._id;
-  api.update(endpoint, JSON.stringify(req.body)).then(() => { 
+  api.update(endpoint, req.body).then(() => { 
     req.flash("success", "Coconut taken care of successfully!");
     res.redirect(`/${endpoint}/${id}`);
   }).catch(err => {

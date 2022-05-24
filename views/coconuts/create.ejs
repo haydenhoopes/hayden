@@ -77,15 +77,15 @@
                 
                 <div class="">
                     <div class="margin-sm">
-                        <label for="technologies[]">Technologies</label>                      
-                        <select name="technologies[]" id="technologies" style="resize:vertical" multiple size="6">
+                        <label for="technologies">Technologies</label>                      
+                        <select name="technologies" id="technologies" style="resize:vertical" multiple size="6">
                             <% for (t of technologies) { %>
                                 <option value="<%= t.name.replace(' ', '_') %>"><%= decodeURI(t.name) %></option>
                             <% } %> 
                         </select>
                     </div>
                     <div class="margin-sm">
-                        <span class="button add full-width">Add new technology</span>
+                        <span class="button add full-width" id="add-tech-btn">Add new technology</span>
                     </div>
                 </div>
                 <div class="row">

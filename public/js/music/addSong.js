@@ -9,7 +9,7 @@ document.querySelector("#add-song-btn").addEventListener("click", function() {
 });
 
 // X out button
-document.querySelector("#song-modal-X").addEventListener("click", function() {
+document.querySelector("#modal-X").addEventListener("click", function() {
     document.querySelector(".modal").style.display = "none";
 });
 

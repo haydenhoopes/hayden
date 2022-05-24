@@ -57,15 +57,10 @@
                 </div>
                 <div>
                     <div class="margin-sm">
-                        <a class="btn btn-large btn-primary btn-block" target="_blank" href="<%= coconut.uurl %>">Go to project</a>
+                        <a class="button add inline" target="_blank" href="<%= coconut.uurl %>">Go to project</a>
                         <% if (currentUser && currentUser.isAdmin) { %>
-                                <a class="btn btn-success btn-block" href="/coconuts/<%= coconut._id %>/edit">Edit</a>    
-                                <a class="btn btn-danger btn-block" href="/coconuts/<%= coconut._id %>/delete" onclick="return confirm('Are you sure you want to remove this coconut?')">Remove</a>
-            
-
-                                <label for="files" class="mt-3">Add File</label>
-                                <input type="file" name="file" id="file">
-                                <p id="uploadMessage"></p>
+                                <a class="button edit inline" href="/coconuts/<%= coconut._id %>/edit">Edit</a>
+                                <a class="button remove inline" href="/coconuts/<%= coconut._id %>/delete" onclick="return confirm('Are you sure you want to remove this coconut?')">Remove</a>
                             <% } %>
                     </div>
                 </div>
@@ -124,93 +119,3 @@
             <p id="picture-exit" style="cursor:pointer;font-size: large;position:absolute;right:4vw;top:3vh;color:rgba(230, 226, 226, 0.89)">X</p>
             <img id="picture" src="" style="height: 90%;">
         </div>
-
-    <script>
-        document.querySelectorAll("div .card").forEach(card => {
-            card.addEventListener("click", function(e) {
-                let src = $(this).find("img")[0].src;
-                let re = new RegExp('(https).*');
-                let newSrc = re.exec(src)[0];
-                document.querySelector("#picture").src = newSrc;
-                document.querySelector("#picture-modal").style.display = "flex";
-
-            })
-        });
-
-        document.querySelector("#picture-exit").addEventListener("click", function() {
-            document.querySelector("#picture-modal").style.display = "none";
-        });
-
-        $("#newFileButton").on("click", function() {
-          var input = $("#files-1").clone();
-
-          fileNo += 1;
-          input.id = "files-" + fileNo;
-
-          $("input[type=file]:last").after(input);
-      });
-
-      $("#file").on("input", function(e) {
-          let data = new FormData();
-          let fileName = this['files'][0].name;
-          data.append(fileName, this['files'][0]);
-          
-          $.post({
-              url: "/uploadS3",
-              data: data,
-              cache: false,
-              contentType: false,
-              processData: false,
-              beforeSend: () => {
-                let progressBar = document.createElement("progress");
-                progressBar.setAttribute("id", "progressBar");
-                this.parentNode.insertBefore(progressBar, this.nextSibling);
-              },
-              success: response => {
-                  console.log("Success response");
-                  console.log(response);
-                  let progressBar = $("#progressBar");
-                  let uploadMessage = $("#uploadMessage");
-                  if (response.status == "success") {
-                      uploadMessage.html("Upload successful");
-                      progressBar.val(100);
-
-
-                      addFileToProject($("#file").val().split(/(\\|\/)/g).pop());
-                  } else if (response.status == "error") {
-                      uploadMessage.html("There was an error uploading the file");
-                      progressBar.val(0);
-                  }
-              },
-              error: err => {
-                  console.log("error response");
-                console.log(err);
-              },
-              complete: () => {
-                  window.setTimeout(() => {
-                    $("#file").val("");
-                    $("#progressBar").remove();
-                    $("#uploadMessage").html("");
-                  }, 3500);
-              }
-          });
-      });
-
-      function addFileToProject(fileName) {
-        $.get({
-            url: "/api/g/coconuts/<%= coconut._id %>",
-            success: (data) => {
-                if (!data.files) { data.files = []}
-                data.files.push(fileName);
-                $.post({
-                    url: "/api/u/coconuts",
-                    data: data,
-                    success: (response) => {
-                        console.log(response.message);
-                    }
-                })
-            }
-        });
-      }
-
-    </script>

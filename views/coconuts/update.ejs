@@ -1,183 +1,176 @@
-<div class="container mt-3">
-    <h2 class="mb-4">Update Coconut</h2>
-    <form action="<%= urlPrefix %>/coconuts/update %>" method="POST">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <input type="hidden" name="_id" value="<%= coconut._id %>" id="_id">
 
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" name="title" id="title" class="form-control" required value="<%= coconut.title %>" >
-                        </div>
+<h1>Edit Project: <%= coconut.title %></h1>
+<form action="<%= urlPrefix %>/coconuts/update" method="POST" class="less-width" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-4 col-s-12">
+                    <input type="hidden" name="_id" value="<%= coconut._id %>">
 
-                    </div>
-                    <div class="col-sm-8">
-
-                        <div class="form-group">
-                            <label for="headline">Headline</label>
-                            <input type="text" name="headline" id="headline" class="form-control" required value="<%= coconut.headline %>" >
-                        </div>
-
+                    <div class="margin-sm">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" required value="<%= coconut.title %>">
                     </div>
                 </div>
+                <div class="col-8 col-s-12">
 
-                <div class="form-group">
-                    <label for="situation">Situation</label> 
-                    <textarea name="situation" id="situation" rows="2" class="form-control" required><%= coconut.situation %> </textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="task">Task</label> 
-                    <textarea name="task" id="task" rows="2" class="form-control" required><%= coconut.task %> </textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="aaction">Action</label> 
-                    <textarea name="aaction" id="aaction" rows="2" class="form-control" required><%= coconut.aaction %> </textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="rresult">Result</label> 
-                    <textarea name="rresult" id="rresult" rows="2" class="form-control" required><%= coconut.rresult %> </textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="shortDescription">Short Description</label> 
-                    <textarea name="shortDescription" id="shortDescription" rows="2" class="form-control" required ><%= coconut.shortDescription %></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="llocation">Location</label>
-                            <input type="text" name="llocation" id="llocation" class="form-control" value="<%= coconut.llocation %>" >
-                        </div>
+                    <div class="margin-sm">
+                        <label for="headline">Headline</label>
+                        <input type="text" name="headline" id="headline" required value="<%= coconut.headline %>">
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="rrole">Role</label>
-                            <input type="text" name="rrole" id="rrole" class="form-control" value="<%= coconut.rrole %>" >
-                        </div>
-                    </div>
-                </div>
 
-                
+                </div>
             </div>
-            <div class="col-sm-4">
 
-                <div class="form-group">
+            <div class="margin-sm">
+                <label for="situation">Situation</label> 
+                <textarea name="situation" id="situation" rows="2" required><%= coconut.situation %></textarea>
+            </div>
+            
+            <div class="margin-sm">
+                <label for="task">Task</label> 
+                <textarea name="task" id="task" rows="2" required> <%= coconut.task %></textarea>
+            </div>
+
+            <div class="margin-sm">
+                <label for="aaction">Action</label> 
+                <textarea name="aaction" id="aaction" rows="2" required><%= coconut.aaction %></textarea>
+            </div>
+
+            <div class="margin-sm">
+                <label for="rresult">Result</label> 
+                <textarea name="rresult" id="rresult" rows="2" required><%= coconut.rresult %></textarea>
+            </div>
+            
+            <div class="margin-sm">
+                <label for="shortDescription">Short Description</label> 
+                <textarea name="shortDescription" id="shortDescription" rows="2" required ><%= coconut.shortDescription %></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-6 col-s-12">
+                    <div class="margin-sm">
+                        <label for="llocation">Location</label>
+                        <input type="text" name="llocation" id="llocation" value="<%= coconut.llocation %>">
+                    </div>
+                </div>
+                <div class="col-6 col-s-12">
+                    <div class="margin-sm">
+                        <label for="rrole">Role</label>
+                        <input type="text" name="rrole" id="rrole" value="<%= coconut.rrole %>">
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="col-4 col-s-12">
+            <div class="row">
+                <div class="col-6 col-s-6 margin-sm">
                     <label for="startDate">Start Date</label>
-                    <input type="date" name="startDate" id="startDate" class="form-control" required value="<%= coconut.startDate %>" >
+                    <input type="date" name="startDate" id="startDate" required value="<%= coconut.startDate %>">
                 </div>
 
-                <div class="form-group">
+                <div class="col-6 col-s-6 margin-sm">
                     <label for="endDate">End Date</label>
-                    <input type="date" name="endDate" id="endDate" class="form-control" required value="<%= coconut.endDate %>" >
+                    <input type="date" name="endDate" id="endDate" required value="<%= coconut.endDate %>">
                 </div>
-                
-                
-                <div class="form-group">
-                    <label for="technologies[]">Technologies</label>   
-                    <select name="technologies[]" id="technologies" class="form-control" style="resize:vertical" multiple size="6">
-                            <% for (t of technologies) { %>
-                                <option value="<%= t.name %>" <% if (coconut.technologies && coconut.technologies.includes(t.name)) { %>selected<% } %>><%= t.name %></option>
-                            <% } %> 
+            </div>
+
+            <div class="">
+                <div class="margin-sm">
+                    <label for="technologies">Technologies</label>                      
+                    <select name="technologies" id="technologies" style="resize:vertical" multiple size="6">
+                        <% for (t of technologies) { %>
+                            <option value="<%= t.name.replace(' ', '_') %>" <% if (coconut.technologies && coconut.technologies.includes(t.name)) { %>selected<% } %>><%= decodeURI(t.name) %></option>
+                        <% } %> 
+                        <% for (t of technologies) { %>
+                            <option value="<%= t.name %>" <% if (coconut.technologies && coconut.technologies.includes(t.name)) { %>selected<% } %>><%= t.name %></option>
+                        <% } %> 
                     </select>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="ttime">Time (hours)</label>
-                            <input type="number" name="ttime" id="ttime" max="499" step=".5" min="0" class="form-control" value="<%= coconut.ttime %>" >
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <p>Hidden</p>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="hhidden" id="hiddenTrue" value="true" class="form-check-input">
-                            <label for="hiddenTrue" class="form-check-label">Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="hhidden" id="hiddenFalse" value="false" class="form-check-input" checked>
-                            <label for="hiddenFalse" class="form-check-label" >No</label>
-                        </div>
+                <div class="margin-sm">
+                    <span class="button add full-width" id="add-tech-btn">Add new technology</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-s-12">
+                    <div class="margin-sm">
+                        <label for="ttime">Time (hours)</label>
+                        <input type="number" name="ttime" id="ttime" max="499" step=".5" min="0" value="<%= coconut.ttime %>">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="uurl">Live URL</label>
-                    <input type="text" name="uurl" id="url" class="form-control" value="<%= coconut.uurl %>" >
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="video">Video URL</label>
-                            <input type="text" name="video" id="video" class="form-control" value="<%= coconut.video %>" >
+            </div>
+            <div class="row">
+                <div class="col-12 col-s-12 margin-sm">
+                    <label for="">Hidden</label>
+                    <div class="input-box">
+                        <div class="row radio-button-label">
+                            <div class="col-10 col-s-10">
+                                <label for="hiddenTrue">Yes</label>
+                            </div>
+                            <div class="col-2 col-s-2">
+                                <input type="radio" name="hhidden" id="hiddenTrue" value="true" class="form-check-input" <% if (coconut.hhidden == 'true') {%> checked <% } %>>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="ttype">Type of Project</label>
-                            <input type="text" name="ttype" id="ttype" placeholder="Work Project" class="form-control" value="<%= coconut.ttype %>" >
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="category">Project Classification</label>
-                            <input type="text" name="category" id="category" placeholder="Programming, Research, etc." class="form-control" value="<%= coconut.category %>" >
+                        <div class="row radio-button-label">
+                            <div class="col-10 col-s-10">
+                                <label for="hiddenTrue">No</label>
+                            </div>
+                            <div class="col-2 col-s-2">
+                                <input type="radio" name="hhidden" id="hiddenTrue" value="false" class="form-check-input" <% if (coconut.hhidden == 'false') {%> checked <% } %>>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <input type="submit" value="Submit" class="btn btn-primary">
-    </form>
-</div>
+            <div class=" margin-sm">
+                <label for="uurl">Live URL</label>
+                <input type="text" name="uurl" id="url" value="<%= coconut.uurl %>">
+            </div>
+            <div class="row margin-sm">
+                <div class="col-12 col-s-12">
+                    <div class="">
+                        <label for="video">Video URL</label>
+                        <input type="text" name="video" id="video" value="<%= coconut.video %>">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-s-12 margin-sm ">
+                    <div class="">
+                        <label for="ttype">Type of Project</label>
+                        <input type="text" name="ttype" id="ttype" value="<%= coconut.ttype %>">
+                    </div>
+                </div>
+                <div class="col-6 col-s-12 margin-sm">
+                    <div class="">
+                        <label for="category">Project Classification</label>
+                        <input type="text" name="category" id="category" value="<%= coconut.category %>">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-s-12 margin-sm">
+                    <label for="files" class="mt-3">Add File</label>
+                    <input type="file" name="file" id="file">
+                    <p id="uploadMessage"></p>
+                </div>
 
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">New Technology</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+            </div>
         </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <label for="techName">Name</label>
-          <input type="text" name="techName" id="newTech" class="form-control">
-        </div>
-        <button id="newTechBtn" class="btn btn-primary">Submit</button>
-      </div>
     </div>
-  </div>
+    <input type="submit" value="Submit" class="button full-width add margin-sm">
+</form>
 
-  <script>
-      $("#newTechBtn").click(function() {
-          let tech = $("#newTech").val();
-          if (!tech == "") {
-            $.post({
-                url: "<%= urlPrefix %>/technologies",
-                success: () => {
-                    $("#newTechBtn").toggleClass("btn-primary");
-                    $("#newTechBtn").toggleClass("btn-success");
-                    $("#newTechBtn").html("Success!");
-                    setTimeout(function(){
-                        $('#myModal').modal('toggle');
-                        $("#technologies").append(`<option value="${$("#newTech").val().replaceAll(" ", "_")}">${$("#newTech").val()}</option>`)
-                    }, 2000);
-                },
-                error: (err) => {
-                    console.log(err);
-                },
-                data: {"name": $("#newTech").val()}
-            })
-          }
-      })
-  </script>
+
+<div class="modal modal-large">
+    <span id="modal-X">X</span>
+    <div>
+        <h2>Add a technology</h2>
+        <input type="text" name="new-tech" id='new-tech' class="full-width" placeholder="Add a new technology here">
+        <span type="submit" id="post-tech-btn" class="button add full-width">Submit</span>
+    </div>
+</div>

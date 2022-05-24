@@ -15,7 +15,12 @@
 
 .modal div:first-of-type {
     margin: auto;
-    width: 80%;
+    width: 70%;
+}
+
+.modal div:first-of-type span:first-of-type {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .draggable h2:first-of-type {
@@ -32,7 +37,7 @@
 
   }
 
-  #song-modal-X {
+  #modal-X {
       position: fixed;
       display: flex;
     justify-content: center; /* align horizontal */
@@ -46,7 +51,7 @@
       color: var(--text-primary);
   }
 
-  #song-modal-X:hover {
+  #modal-X:hover {
       cursor: pointer;
       background-color: var(--text-primary);
       color: var(--text-secondary);

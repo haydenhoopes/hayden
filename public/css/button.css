@@ -22,6 +22,11 @@
     background-color: var(--button-color-primary);
 }
 
+.inline {
+    display: inline-block;
+    margin-top: .5rem;
+}
+
 .remove {
     background-color: var(--button-color-remove);
 }
