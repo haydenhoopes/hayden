@@ -82,9 +82,6 @@
                     <label for="technologies">Technologies</label>                      
                     <select name="technologies" id="technologies" style="resize:vertical" multiple size="6">
                         <% for (t of technologies) { %>
-                            <option value="<%= t.name.replace(' ', '_') %>" <% if (coconut.technologies && coconut.technologies.includes(t.name)) { %>selected<% } %>><%= decodeURI(t.name) %></option>
-                        <% } %> 
-                        <% for (t of technologies) { %>
                             <option value="<%= t.name %>" <% if (coconut.technologies && coconut.technologies.includes(t.name)) { %>selected<% } %>><%= t.name %></option>
                         <% } %> 
                     </select>

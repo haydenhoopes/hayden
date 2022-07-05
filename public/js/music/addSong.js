@@ -4,13 +4,7 @@
 // Add event listener
 document.querySelector("#add-song-btn").addEventListener("click", function() {
     // TODO: Add code here to erase everything inside modal before showing.
-
     document.querySelector(".modal").style.display = "block";
-});
-
-// X out button
-document.querySelector("#modal-X").addEventListener("click", function() {
-    document.querySelector(".modal").style.display = "none";
 });
 
 

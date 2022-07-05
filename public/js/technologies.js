@@ -56,9 +56,6 @@ document.querySelector('#post-tech-btn').addEventListener('click', function(e) {
   });
 })
 
-document.querySelector('#modal-X').addEventListener('click', function() {
-  document.querySelector('.modal').style.display = 'none';
-});
 
 // document.querySelectorAll("div .card").forEach(card => {
 //   card.addEventListener("click", function(e) {
@@ -84,19 +81,26 @@ document.querySelector('#modal-X').addEventListener('click', function() {
 // $("input[type=file]:last").after(input);
 // });
 
-document.querySelector("#file").addEventListener('change', function(e) {
+document.querySelector("#file").addEventListener('change', async function(e) {
   let data = new FormData();
-  console.log(this);
-  // let fileName = this['files'][0].name;
-  fetch("/uploadS3", {
-      method: "POST",
-      headers: {'Accept': 'multipart/form-data', 'Content-Type': 'multipart/form-data'}, 
-      body: data
-  }).then(res => {
-      console.log(res);
-  }).catch(res => {
-      console.log(res);
-  });
+  let file = this['files'][0];
+  data.append('file', file);
+  
+  try {
+    await fetch("/uploadS3", {
+        method: "POST",
+        headers: {'Accept': 'multipart/form-data'}, 
+        body: data
+    });
+
+    /*
+        Maybe make a .js file that has functions for sending data? Like an api client module?
+    */
+    await fetch
+  } catch (error) {
+    console.error(error);
+  }
+
   //   data.append(fileName, this['files'][0]);
   
   //   $.post({

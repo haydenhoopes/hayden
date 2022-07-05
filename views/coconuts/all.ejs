@@ -2,9 +2,11 @@
     <h1>Projects</h1>
   </div>
 
+<% if (currentUser && currentUser.isAdmin) { %>
 <div class="row more-width">
   <a href="/coconuts/create" class="button add">New Project</a>
 </div>
+<% } %>
 
 
 <div class="row more-width">

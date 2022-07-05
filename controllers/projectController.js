@@ -134,10 +134,10 @@ module.exports = {
    try {
       let techs = await api.scan("technologies");
       res.locals.technologies = techs.data;
+
       let id = req.params.id;
       let data = await api.get(endpoint, id);
       res.locals.coconut = data.data[0];
-      console.log(res.locals.coconut);
       res.render(`${endpoint}/update`);
    } catch (error) {
       req.flash("error", error.message);
@@ -147,8 +147,15 @@ module.exports = {
 
  postUpdate: (req, res, next) => {
   let id = req.body._id;
+  let technologies = req.body.technologies;
+
+  if (!Array.isArray(technologies)) {
+    technologies = [technologies];
+    req.body.technologies = technologies;
+  }
+
   api.update(endpoint, req.body).then(() => { 
-    req.flash("success", "Coconut taken care of successfully!");
+    req.flash("success", "Project updated successfully!");
     res.redirect(`/${endpoint}/${id}`);
   }).catch(err => {
     req.flash("error", err.message);

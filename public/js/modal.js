@@ -43,3 +43,8 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+// X out button
+document.querySelector("#modal-X").addEventListener("click", function() {
+  document.querySelector(".modal").style.display = "none";
+});

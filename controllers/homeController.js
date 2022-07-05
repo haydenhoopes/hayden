@@ -45,9 +45,10 @@ module.exports = {
             res.json({"status": "error", "message": "There was an error. Check homecontroller line 45"})
         }
         
-        let files = req.files;
-        let fileName = Object.keys(files)[0];
-        let data = files[fileName].data;
+        let file = req.files.file;
+        console.log(file);
+        let fileName = file.name;
+        let data = file.data;
         s3.uploadObject(fileName, data)
             .then(response => {
                 res.json(response);
