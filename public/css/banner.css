@@ -40,10 +40,12 @@
 }
 
 .banner img {
+    display: block;
+    filter: drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.24));
     padding-top: 2rem;
-    height: 400px;
     z-index: 1;
     transition: opacity 0.1s;
+    margin: auto;
 }
 
 /* Small screens */
@@ -56,7 +58,7 @@
     }
 
     .banner img {
-        position: fixed;
+        width: 80%
     }
 
     .banner p:last-child{
@@ -93,5 +95,9 @@
     }
     .banner-background {
         height: 40vh;
+    }
+
+    .banner img {
+        max-width: 35%;
     }
 }

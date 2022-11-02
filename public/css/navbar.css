@@ -7,7 +7,9 @@ body {
 
 main {
     margin-left: var(--navbar-width);
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
 }
 
 .navbar {

@@ -22,7 +22,7 @@
     .col-s-9 {width: 75%;}
     .col-s-10 {width: 83.33%;}
     .col-s-11 {width: 91.66%;}
-    .col-s-12 {width: 100%;}
+    .col-s-12 {width: calc(100%-2rem);}
 
     .col-s-6:first-child {
       padding-right: 0.5rem;
@@ -59,6 +59,14 @@
     .side-margin-lg {
       margin-left: 5rem;
       margin-right: 5rem;
+    } 
+    
+    .less-width {
+      max-width: none;
+    }
+    
+    .more-width {
+      max-width: none;
     }
   }
 
@@ -111,6 +119,18 @@
   margin-left: 5rem;
   margin-right: 5rem;
 }
+
+.less-width {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.more-width {
+  max-width: 1400px;
+  margin: auto;
+} 
+
+
   }
 
   .box-outline {
@@ -138,14 +158,4 @@
     padding-right: 1.5rem;
     padding-bottom: 1.5rem;
   }
-
-.less-width {
-  max-width: 1000px;
-  margin: auto;
-}
-
-.more-width {
-  max-width: 1400px;
-  margin: auto;
-}
 
